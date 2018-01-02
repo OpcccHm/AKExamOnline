@@ -93,7 +93,7 @@ insert into t_course values ('QT','G3','SCCE');
 insert into t_course values ('MySQL','G3','SCCE');
 
 --笔试题目表
-create table t_writtenTest(
+create table t_writtenQuestion(
 	qId int primary key identity(1001,1),--题目编号
 	qType varchar(10) not null,--题目类型（单选、多选）
 	qTitle varchar(100) not null,	--题目标题
@@ -108,7 +108,7 @@ create table t_writtenTest(
 );
 
 --机试题目标
-create table t_machineTest(
+create table t_machineQuestion(
 	qId int primary key identity(1001,1),--题目编号
 	qTitle varchar(100) not null,	--题目标题
 	degree varchar(4) not null,	--难易程度

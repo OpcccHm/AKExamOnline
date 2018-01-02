@@ -1,17 +1,17 @@
 /*
 Navicat SQL Server Data Transfer
 
-Source Server         : sqlserver
-Source Server Version : 120000
-Source Host           : localhost:1433
+Source Server         : SQLServer
+Source Server Version : 130000
+Source Host           : 127.0.0.1:1433
 Source Database       : db_exam
 Source Schema         : dbo
 
 Target Server Type    : SQL Server
-Target Server Version : 120000
+Target Server Version : 130000
 File Encoding         : 65001
 
-Date: 2018-01-02 17:54:58
+Date: 2018-01-02 22:33:29
 */
 
 
@@ -106,11 +106,11 @@ SET IDENTITY_INSERT [dbo].[t_course] OFF
 GO
 
 -- ----------------------------
--- Table structure for t_machineTest
+-- Table structure for t_machineQuestion
 -- ----------------------------
-DROP TABLE [dbo].[t_machineTest]
+DROP TABLE [dbo].[t_machineQuestion]
 GO
-CREATE TABLE [dbo].[t_machineTest] (
+CREATE TABLE [dbo].[t_machineQuestion] (
 [qId] int NOT NULL IDENTITY(1001,1) ,
 [qTitle] varchar(100) NOT NULL ,
 [degree] varchar(4) NOT NULL ,
@@ -122,11 +122,11 @@ CREATE TABLE [dbo].[t_machineTest] (
 GO
 
 -- ----------------------------
--- Records of t_machineTest
+-- Records of t_machineQuestion
 -- ----------------------------
-SET IDENTITY_INSERT [dbo].[t_machineTest] ON
+SET IDENTITY_INSERT [dbo].[t_machineQuestion] ON
 GO
-SET IDENTITY_INSERT [dbo].[t_machineTest] OFF
+SET IDENTITY_INSERT [dbo].[t_machineQuestion] OFF
 GO
 
 -- ----------------------------
@@ -209,11 +209,11 @@ GO
 GO
 
 -- ----------------------------
--- Table structure for t_writtenTest
+-- Table structure for t_writtenQuestion
 -- ----------------------------
-DROP TABLE [dbo].[t_writtenTest]
+DROP TABLE [dbo].[t_writtenQuestion]
 GO
-CREATE TABLE [dbo].[t_writtenTest] (
+CREATE TABLE [dbo].[t_writtenQuestion] (
 [qId] int NOT NULL IDENTITY(1001,1) ,
 [qType] varchar(10) NOT NULL ,
 [qTitle] varchar(100) NOT NULL ,
@@ -231,11 +231,11 @@ CREATE TABLE [dbo].[t_writtenTest] (
 GO
 
 -- ----------------------------
--- Records of t_writtenTest
+-- Records of t_writtenQuestion
 -- ----------------------------
-SET IDENTITY_INSERT [dbo].[t_writtenTest] ON
+SET IDENTITY_INSERT [dbo].[t_writtenQuestion] ON
 GO
-SET IDENTITY_INSERT [dbo].[t_writtenTest] OFF
+SET IDENTITY_INSERT [dbo].[t_writtenQuestion] OFF
 GO
 
 -- ----------------------------
@@ -259,13 +259,13 @@ ALTER TABLE [dbo].[t_course] ADD PRIMARY KEY ([csId])
 GO
 
 -- ----------------------------
--- Indexes structure for table t_machineTest
+-- Indexes structure for table t_machineQuestion
 -- ----------------------------
 
 -- ----------------------------
--- Primary Key structure for table t_machineTest
+-- Primary Key structure for table t_machineQuestion
 -- ----------------------------
-ALTER TABLE [dbo].[t_machineTest] ADD PRIMARY KEY ([qId])
+ALTER TABLE [dbo].[t_machineQuestion] ADD PRIMARY KEY ([qId])
 GO
 
 -- ----------------------------
@@ -299,11 +299,11 @@ ALTER TABLE [dbo].[t_user] ADD PRIMARY KEY ([name])
 GO
 
 -- ----------------------------
--- Indexes structure for table t_writtenTest
+-- Indexes structure for table t_writtenQuestion
 -- ----------------------------
 
 -- ----------------------------
--- Primary Key structure for table t_writtenTest
+-- Primary Key structure for table t_writtenQuestion
 -- ----------------------------
-ALTER TABLE [dbo].[t_writtenTest] ADD PRIMARY KEY ([qId])
+ALTER TABLE [dbo].[t_writtenQuestion] ADD PRIMARY KEY ([qId])
 GO

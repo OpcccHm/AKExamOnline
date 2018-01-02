@@ -60,11 +60,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<br />
 			<a href="jsp/developing.jsp" target="manFrame">
 				机试题:
-				<s:property value="#course.machineTests.size()"/>
+				<s:property value="#course.machineQuestions.size()"/>
 			</a>
 			<br>
-			<a href="" target="manFrame">
-				笔试题:<s:property value="#course.writtenTests.size()"/>
+			<a href="question/question_getWrittenList?course.csId=${course.csId }&course.csName=${course.csName}" target="manFrame">
+				笔试题:<s:property value="#course.writtenQuestions.size()"/>
 			</a>
 		</div>
 	</s:iterator>

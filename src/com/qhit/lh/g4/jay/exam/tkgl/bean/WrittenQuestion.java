@@ -6,7 +6,7 @@ import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
  * WrittenTest entity. @author MyEclipse Persistence Tools
  */
 
-public class WrittenTest implements java.io.Serializable {
+public class WrittenQuestion implements java.io.Serializable {
 
 	// Fields
 
@@ -19,7 +19,7 @@ public class WrittenTest implements java.io.Serializable {
 	private String optionD;
 	private String answer;
 	private String degree;
-	private Integer qsId;
+	private Integer csId;
 	private String chapter;
 	
 	//n-1
@@ -36,13 +36,13 @@ public class WrittenTest implements java.io.Serializable {
 	}
 
 	/** default constructor */
-	public WrittenTest() {
+	public WrittenQuestion() {
 	}
 
 	/** minimal constructor */
-	public WrittenTest(String qtype, String qtitle, String optionA,
+	public WrittenQuestion(String qtype, String qtitle, String optionA,
 			String optionB, String optionC, String optionD, String degree,
-			Integer qsId) {
+			Integer csId) {
 		this.qtype = qtype;
 		this.qtitle = qtitle;
 		this.optionA = optionA;
@@ -50,13 +50,13 @@ public class WrittenTest implements java.io.Serializable {
 		this.optionC = optionC;
 		this.optionD = optionD;
 		this.degree = degree;
-		this.qsId = qsId;
+		this.csId = csId;
 	}
 
 	/** full constructor */
-	public WrittenTest(String qtype, String qtitle, String optionA,
+	public WrittenQuestion(String qtype, String qtitle, String optionA,
 			String optionB, String optionC, String optionD, String answer,
-			String degree, Integer qsId, String chapter) {
+			String degree, Integer csId, String chapter) {
 		this.qtype = qtype;
 		this.qtitle = qtitle;
 		this.optionA = optionA;
@@ -65,7 +65,7 @@ public class WrittenTest implements java.io.Serializable {
 		this.optionD = optionD;
 		this.answer = answer;
 		this.degree = degree;
-		this.qsId = qsId;
+		this.csId = csId;
 		this.chapter = chapter;
 	}
 
@@ -143,12 +143,12 @@ public class WrittenTest implements java.io.Serializable {
 		this.degree = degree;
 	}
 
-	public Integer getQsId() {
-		return this.qsId;
+	public Integer getCsId() {
+		return csId;
 	}
 
-	public void setQsId(Integer qsId) {
-		this.qsId = qsId;
+	public void setCsId(Integer csId) {
+		this.csId = csId;
 	}
 
 	public String getChapter() {

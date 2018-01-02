@@ -11,6 +11,7 @@
         	<interceptor-ref name="loginInterceptor"></interceptor-ref>
         	<interceptor-ref name="defaultStack"></interceptor-ref>
         	<result name="listCourse" >/jsp/questionsManage.jsp</result>
+        	<result name="listWritten" >/jsp/writtenQuestionList.jsp</result>
         </action>
     </package>
 </struts>

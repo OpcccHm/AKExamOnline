@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.hibernate.Query;
 
+import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.common.dao.BaseDao;
 import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
+import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion;
 
 public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 
@@ -32,6 +34,29 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		}
 		//执行查询
 		return query.list();
+	}
+
+	@Override
+	public PageBean<WrittenQuestion> getWrittenList(PageBean<WrittenQuestion> pageBean, Course course) {
+		// TODO Auto-generated method stub
+		//hql语句
+		StringBuffer hql = new StringBuffer();
+		hql.append("select w from WrittenQuestion w where w.csId = :csId");
+		//获取查询器
+		Query query = getSession().createQuery(hql.toString());
+		//设置分页查询参数
+		query.setInteger("csId", course.getCsId());
+		//总记录数
+		int count = query.list().size();
+		pageBean.setTotalNumber(count);
+		//当前页数据
+		List<WrittenQuestion> items = query.setFirstResult((pageBean.getCurrentIndex()-1)*pageBean.getPageSize())
+				.setMaxResults(pageBean.getPageSize())
+				.list();
+		
+		pageBean.setItems(items);
+		
+		return pageBean;
 	}
 
 }

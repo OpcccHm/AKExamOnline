@@ -21,3 +21,7 @@
 /sqljdbc4.jar
 /struts2-core-2.3.34.jar
 /xwork-core-2.3.34.jar
+/poi-3.15.jar
+/poi-ooxml-3.15.jar
+/poi-ooxml-schemas-3.15.jar
+/xmlbeans-2.6.0.jar

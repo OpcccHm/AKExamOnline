@@ -30,9 +30,9 @@
 	<mapping
 		resource="com/qhit/lh/g4/jay/exam/kmgl/bean/Course.hbm.xml" />
 	<mapping
-		resource="com/qhit/lh/g4/jay/exam/tkgl/bean/MachineTest.hbm.xml" />
+		resource="com/qhit/lh/g4/jay/exam/tkgl/bean/MachineQuestion.hbm.xml" />
 	<mapping
-		resource="com/qhit/lh/g4/jay/exam/tkgl/bean/WrittenTest.hbm.xml" />
+		resource="com/qhit/lh/g4/jay/exam/tkgl/bean/WrittenQuestion.hbm.xml" />
 
 </session-factory>
 

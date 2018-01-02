@@ -20,13 +20,13 @@
             <column name="major" length="10" not-null="true" />
         </property>
         <!-- 1-n -->
-        <set name="writtenTests" fetch="join" cascade="all">
-        	<key column="qsId"></key>
-        	<one-to-many class="com.qhit.lh.g4.jay.exam.tkgl.bean.MachineTest"/>
+        <set name="writtenQuestions" fetch="join" cascade="save-update">
+        	<key column="csId"></key>
+        	<one-to-many class="com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion"/>
         </set>
-        <set name="machineTests" fetch="join" cascade="all">
-        	<key column="qsId"></key>
-        	<one-to-many class="com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenTest"/>
+        <set name="machineQuestions" fetch="join" cascade="save-update">
+        	<key column="csId"></key>
+        	<one-to-many class="com.qhit.lh.g4.jay.exam.tkgl.bean.MachineQuestion"/>
         </set>
     </class>
 </hibernate-mapping>

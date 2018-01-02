@@ -6,14 +6,14 @@ import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
  * MachineTest entity. @author MyEclipse Persistence Tools
  */
 
-public class MachineTest implements java.io.Serializable {
+public class MachineQuestion implements java.io.Serializable {
 
 	// Fields
 
 	private Integer qid;
 	private String qtitle;
 	private String degree;
-	private Integer qsId;
+	private Integer csId;
 	private String chapter;
 	
 	//n-1
@@ -30,27 +30,32 @@ public class MachineTest implements java.io.Serializable {
 	}
 
 	/** default constructor */
-	public MachineTest() {
+	public MachineQuestion() {
 	}
 
-	/** minimal constructor */
-	public MachineTest(String qtitle, String degree, Integer qsId) {
-		this.qtitle = qtitle;
-		this.degree = degree;
-		this.qsId = qsId;
-	}
+	
 
-	/** full constructor */
-	public MachineTest(String qtitle, String degree, Integer qsId,
+	public MachineQuestion(Integer qid, String qtitle, String degree, Integer csId,
 			String chapter) {
+		super();
+		this.qid = qid;
 		this.qtitle = qtitle;
 		this.degree = degree;
-		this.qsId = qsId;
+		this.csId = csId;
 		this.chapter = chapter;
 	}
 
-	// Property accessors
+	/** minimal constructor */
 
+	// Property accessors
+	
+	public Integer getCsId() {
+		return csId;
+	}
+
+	public void setCsId(Integer csId) {
+		this.csId = csId;
+	}
 	public Integer getQid() {
 		return this.qid;
 	}
@@ -73,14 +78,6 @@ public class MachineTest implements java.io.Serializable {
 
 	public void setDegree(String degree) {
 		this.degree = degree;
-	}
-
-	public Integer getQsId() {
-		return this.qsId;
-	}
-
-	public void setQsId(Integer qsId) {
-		this.qsId = qsId;
 	}
 
 	public String getChapter() {

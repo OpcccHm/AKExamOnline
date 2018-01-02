@@ -3,8 +3,8 @@ package com.qhit.lh.g4.jay.exam.kmgl.bean;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.qhit.lh.g4.jay.exam.tkgl.bean.MachineTest;
-import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenTest;
+import com.qhit.lh.g4.jay.exam.tkgl.bean.MachineQuestion;
+import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion;
 
 /**
  * Course entity. @author MyEclipse Persistence Tools
@@ -20,29 +20,30 @@ public class Course implements java.io.Serializable {
 	private String major;
 	
 	//1-n
-	private Set<WrittenTest> writtenTests = new HashSet<>();
-	private Set<MachineTest> machineTests = new HashSet<>();
+	private Set<WrittenQuestion> writtenQuestions = new HashSet<>();
+	private Set<MachineQuestion> machineQuestions = new HashSet<>();
 	
 	// Constructors
 
-	public Set<WrittenTest> getWrittenTests() {
-		return writtenTests;
-	}
-	
-	public void setWrittenTests(Set<WrittenTest> writtenTests) {
-		this.writtenTests = writtenTests;
-	}
-
-	public Set<MachineTest> getMachineTests() {
-		return machineTests;
-	}
-
-	public void setMachineTests(Set<MachineTest> machineTests) {
-		this.machineTests = machineTests;
-	}
 
 	/** default constructor */
 	public Course() {
+	}
+
+	public Set<WrittenQuestion> getWrittenQuestions() {
+		return writtenQuestions;
+	}
+
+	public void setWrittenQuestions(Set<WrittenQuestion> writtenQuestions) {
+		this.writtenQuestions = writtenQuestions;
+	}
+
+	public Set<MachineQuestion> getMachineQuestions() {
+		return machineQuestions;
+	}
+
+	public void setMachineQuestions(Set<MachineQuestion> machineQuestions) {
+		this.machineQuestions = machineQuestions;
 	}
 
 	/** full constructor */
