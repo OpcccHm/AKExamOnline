@@ -37,7 +37,10 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 	}
 
 	@Override
-	public PageBean<WrittenQuestion> getWrittenList(PageBean<WrittenQuestion> pageBean, Course course) {
+	public PageBean<WrittenQuestion> getWrittenList(
+			PageBean<WrittenQuestion> pageBean, 
+			Course course,
+			int pageIndex) {
 		// TODO Auto-generated method stub
 		//hql语句
 		StringBuffer hql = new StringBuffer();
@@ -49,6 +52,7 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		//总记录数
 		int count = query.list().size();
 		pageBean.setTotalNumber(count);
+		pageBean.setCurrentIndex(pageIndex);
 		//当前页数据
 		List<WrittenQuestion> items = query.setFirstResult((pageBean.getCurrentIndex()-1)*pageBean.getPageSize())
 				.setMaxResults(pageBean.getPageSize())

@@ -121,13 +121,13 @@ font {
 		<div align="right" id="marginTop">
 			第${pageBean.currentIndex }页， 共<s:property value="pageBean.getTotalPage()"/>页&nbsp;&nbsp;
 			<a
-				href="">首页</a>&nbsp;
+				href="question/question_getWrittenList?course.csId=${course.csId }&course.csName=${course.csName}&pageIndex=1">首页</a>&nbsp;
 			<a
-				href="">上一页</a>&nbsp;
+				href="question/question_getWrittenList?course.csId=${course.csId }&course.csName=${course.csName}&pageIndex=${pageBean.preIndex }">上一页</a>&nbsp;
 			<a
-				href="">下一页</a>&nbsp;
+				href="question/question_getWrittenList?course.csId=${course.csId }&course.csName=${course.csName}&pageIndex=${pageBean.nextIndex }">下一页</a>&nbsp;
 			<a
-				href="">末页</a>
+				href="question/question_getWrittenList?course.csId=${course.csId }&course.csName=${course.csName}&pageIndex=${pageBean.totalPage }">末页</a>
 		</div>
 	</fieldset>
 </body>

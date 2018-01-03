@@ -19,6 +19,7 @@
 	</property>
 	<property name="show_sql">true</property>
 	<property name="format_sql">true</property>
+	<property name="jdbc.use_scrollable_resultset">false</property>
 	<mapping
 		resource="com/qhit/lh/g4/jay/exam/common/bean/Student.hbm.xml" />
 	<mapping

@@ -17,7 +17,7 @@ public class WrittenQuestionTest {
 		Course course = new Course();
 		course.setCsId(1);
 		
-		pageBean = questionService.getWrittenList(pageBean, course);
+		pageBean = questionService.getWrittenList(pageBean, course, 1);
 		
 		System.out.println(pageBean.getItems().get(0).getQtitle());;
 	}

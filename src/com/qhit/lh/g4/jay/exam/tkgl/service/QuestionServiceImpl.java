@@ -19,9 +19,12 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public PageBean<WrittenQuestion> getWrittenList(PageBean<WrittenQuestion> pageBean, Course course) {
+	public PageBean<WrittenQuestion> getWrittenList(
+			PageBean<WrittenQuestion> pageBean, 
+			Course course,
+			int pageIndex) {
 		// TODO Auto-generated method stub
-		return questionDao.getWrittenList(pageBean, course);
+		return questionDao.getWrittenList(pageBean, course, pageIndex);
 	}
 
 }

@@ -23,5 +23,8 @@ public interface QuestionService {
 	 * @return
 	 * 笔试题列表分页数据
 	 */
-	public PageBean<WrittenQuestion> getWrittenList(PageBean<WrittenQuestion> pageBean, Course course);
+	public PageBean<WrittenQuestion> getWrittenList(
+			PageBean<WrittenQuestion> pageBean, 
+			Course course,
+			int pageIndex);
 }

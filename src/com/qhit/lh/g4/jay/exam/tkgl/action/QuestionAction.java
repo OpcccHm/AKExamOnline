@@ -19,6 +19,7 @@ public class QuestionAction extends ActionSupport {
 	private String stage;//阶段
 	private List<Course> listCourses = new ArrayList<>();
 	private PageBean<WrittenQuestion> pageBean = new PageBean<>();
+	private int pageIndex = 1;//指定页,初始化为1
 	
 	/**
 	 * @return
@@ -39,21 +40,22 @@ public class QuestionAction extends ActionSupport {
 		return "listCourse";
 	}
 	
+	/**
+	 * @return
+	 * 获取试题列表
+	 */
+	public String getWrittenList(){
+		pageBean = questionService.getWrittenList(pageBean, course, pageIndex);
+		System.out.println("数据大小:"+pageBean.getItems().size());
+		return "listWritten";
+	}
+	
 	public PageBean<WrittenQuestion> getPageBean() {
 		return pageBean;
 	}
 
 	public void setPageBean(PageBean<WrittenQuestion> pageBean) {
 		this.pageBean = pageBean;
-	}
-
-	/**
-	 * @return
-	 * 获取试题列表
-	 */
-	public String getWrittenList(){
-		pageBean = questionService.getWrittenList(pageBean, course);
-		return "listWritten";
 	}
 
 	public Course getCourse() {
@@ -88,5 +90,13 @@ public class QuestionAction extends ActionSupport {
 
 	public void setListCourses(List<Course> listCourses) {
 		this.listCourses = listCourses;
+	}
+
+	public int getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
 	}
 }

@@ -67,7 +67,6 @@ public class PageBean<T> implements Serializable {
 	
 	public PageBean() {
 		pageSize = 10;
-		currentIndex = 1;
 		Items = new ArrayList<>();
 	}
 	
@@ -105,6 +104,11 @@ public class PageBean<T> implements Serializable {
 	 */
 	public void setTotalNumber(int totalNumber) {
 		this.totalNumber = totalNumber;
+		int size = this.totalNumber/this.pageSize;
+		if(this.totalNumber%this.pageSize != 0){
+			size = size + 1;
+		}
+		this.totalPage = size;
 	}
 	
 	/**
@@ -112,12 +116,6 @@ public class PageBean<T> implements Serializable {
 	 * @return
 	 */
 	public int getTotalPage() {
-		int size = this.totalNumber/this.pageSize;
-		if(this.totalNumber%this.pageSize != 0){
-			size = size + 1;
-		}
-		this.totalPage = size;
-		
 		return this.totalPage;
 	}
 
@@ -138,13 +136,13 @@ public class PageBean<T> implements Serializable {
 	}
 
 	/**
-	 * 当前页的上一页，如果当前页小于第一页那么上一页为0
+	 * 当前页的上一页，如果当前页小于第一页那么上一页为1
 	 * @return
 	 */
 	public int getPreIndex() {
 		
 		if(this.currentIndex <= 1){
-			this.preIndex = 0;
+			this.preIndex = 1;
 		}else{
 			this.preIndex = this.currentIndex -1;
 		}
