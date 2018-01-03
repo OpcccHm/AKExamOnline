@@ -12,6 +12,7 @@
         	<interceptor-ref name="defaultStack"></interceptor-ref>
         	<result name="listCourse" >/jsp/questionsManage.jsp</result>
         	<result name="listWritten" >/jsp/writtenQuestionList.jsp</result>
+        	<result name="addWrittenQuestion">/jsp/closeDialog.jsp</result>
         </action>
     </package>
 </struts>

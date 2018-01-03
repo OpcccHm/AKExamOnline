@@ -4,6 +4,7 @@
 package com.qhit.lh.g4.jay.exam.common.dao;
 
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.qhit.lh.g4.jay.exam.common.utils.HibernateSessionFactory;
 

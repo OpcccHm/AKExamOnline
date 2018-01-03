@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.common.dao.BaseDao;
@@ -57,10 +58,21 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		List<WrittenQuestion> items = query.setFirstResult((pageBean.getCurrentIndex()-1)*pageBean.getPageSize())
 				.setMaxResults(pageBean.getPageSize())
 				.list();
-		
+		//设置pagebean的数据集合
 		pageBean.setItems(items);
 		
 		return pageBean;
+	}
+
+	@Override
+	public void addWrittenQuestion(WrittenQuestion writtenQuestion) {
+		// TODO Auto-generated method stub
+		//开启事务
+		Transaction ts = getSession().beginTransaction();
+		//执行添加，返回新纪录的主键
+		long id = (Integer) getSession().save(writtenQuestion);
+		//提交事务
+		ts.commit();
 	}
 
 }

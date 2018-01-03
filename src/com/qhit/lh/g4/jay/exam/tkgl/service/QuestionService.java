@@ -27,4 +27,10 @@ public interface QuestionService {
 			PageBean<WrittenQuestion> pageBean, 
 			Course course,
 			int pageIndex);
+	
+	/**
+	 * @param writtenQuestion
+	 * 添加笔试题
+	 */
+	public void addWrittenQuestion(WrittenQuestion writtenQuestion);
 }

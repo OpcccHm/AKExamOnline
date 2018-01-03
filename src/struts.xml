@@ -25,7 +25,7 @@
     </package>
 
     <include file="com/qhit/lh/g4/jay/exam/common/config/user.xml"/>
-    <include file="com/qhit/lh/g4/jay/exam/tkgl/config/Question.xml"/>
+    <include file="com/qhit/lh/g4/jay/exam/tkgl/config/question.xml"/>
 
     <!-- Add packages here -->
     <!-- <interceptor-ref name="loginInterceptor"></interceptor-ref>

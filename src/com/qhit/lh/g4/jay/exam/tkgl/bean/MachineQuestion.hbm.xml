@@ -14,13 +14,13 @@
             <column name="qTitle" length="100" not-null="true" />
         </property>
         <property name="degree" type="java.lang.String">
-            <column name="degree" length="4" not-null="true" />
+            <column name="degree" length="10" not-null="true" />
         </property>
         <property name="csId" type="java.lang.Integer" insert="false" update="false">
             <column name="csId" not-null="true" />
         </property>
         <property name="chapter" type="java.lang.String">
-            <column name="chapter" length="2" />
+            <column name="chapter" length="5" />
         </property>
         
         <!-- n-1 -->

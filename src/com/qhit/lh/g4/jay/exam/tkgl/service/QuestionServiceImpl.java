@@ -27,4 +27,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.getWrittenList(pageBean, course, pageIndex);
 	}
 
+	@Override
+	public void addWrittenQuestion(WrittenQuestion writtenQuestion) {
+		// TODO Auto-generated method stub
+		questionDao.addWrittenQuestion(writtenQuestion);
+	}
+
 }

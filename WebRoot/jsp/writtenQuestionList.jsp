@@ -37,26 +37,33 @@ font {
 </style>
 <script type="text/javascript">
 	function showAddQuestion() {
-		var width = (screen.width - 500) / 2;
-		var height = (screen.height - 500) / 2;
-		var res = window
+		var width = (screen.width - 450) / 2;
+		var height = (screen.height - 450) / 2;
+		var dialog = window
 				.open(
-						"jsp/addQuestion.jsp",
+						"../jsp/addWrittenQuestion.jsp?csId=${course.csId }&csName=${course.csName}",
 						"window",
-						"width=500px,height=500px,top="
+						"width=450px,height=450px,top="
 								+ height
 								+ ", left="
 								+ width
 								+ ", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+		//轮询窗口是否关闭,关闭的话刷新数据
+		setInterval(function(){
+			if(dialog != null && dialog.closed){
+				window.location.reload(true);
+			}
+		}, 800);
+		
 	}
 	function showUpdateQuestion(qid) {
-		var width = (screen.width - 500) / 2;
-		var height = (screen.height - 500) / 2;
+		var width = (screen.width - 450) / 2;
+		var height = (screen.height - 450) / 2;
 		var res = window
 				.open(
-						"jsp/updateQuestion.jsp?qid=" + qid,
+						"../jsp/addWrittenQuestion.jsp?csId=${course.csId }&csName=${course.csName}",
 						"window",
-						"width=500px,height=500px,top="
+						"width=450px,height=450px,top="
 								+ height
 								+ ", left="
 								+ width

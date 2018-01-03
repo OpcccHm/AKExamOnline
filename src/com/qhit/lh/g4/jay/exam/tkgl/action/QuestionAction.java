@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
@@ -14,9 +16,10 @@ import com.qhit.lh.g4.jay.exam.tkgl.service.QuestionServiceImpl;
 
 public class QuestionAction extends ActionSupport {
 	private QuestionService questionService = new QuestionServiceImpl();
-	private Course course;
+	private Course course;//课程
 	private String major;//专业方向
 	private String stage;//阶段
+	private WrittenQuestion writtenQuestion;//笔试题对象
 	private List<Course> listCourses = new ArrayList<>();
 	private PageBean<WrittenQuestion> pageBean = new PageBean<>();
 	private int pageIndex = 1;//指定页,初始化为1
@@ -48,6 +51,20 @@ public class QuestionAction extends ActionSupport {
 		pageBean = questionService.getWrittenList(pageBean, course, pageIndex);
 		System.out.println("数据大小:"+pageBean.getItems().size());
 		return "listWritten";
+	}
+	
+	/**
+	 * @return
+	 * 添加笔试题
+	 */
+	public String addWrittenQuestion(){
+		System.out.println(writtenQuestion.getCsId());
+		writtenQuestion.setCourse(course);
+		//接收并保存参数
+		ServletActionContext.getRequest().setAttribute("csid", course.getCsId());
+		ServletActionContext.getRequest().setAttribute("csName", course.getCsId());
+		questionService.addWrittenQuestion(writtenQuestion);
+		return "addWrittenQuestion";
 	}
 	
 	public PageBean<WrittenQuestion> getPageBean() {
@@ -98,5 +115,13 @@ public class QuestionAction extends ActionSupport {
 
 	public void setPageIndex(int pageIndex) {
 		this.pageIndex = pageIndex;
+	}
+
+	public WrittenQuestion getWrittenQuestion() {
+		return writtenQuestion;
+	}
+
+	public void setWrittenQuestion(WrittenQuestion writtenQuestion) {
+		this.writtenQuestion = writtenQuestion;
 	}
 }
