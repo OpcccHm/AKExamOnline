@@ -89,5 +89,18 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		getSession().update(writtenQuestion);
 		ts.commit();
 	}
+	
+	@Override
+	public void inportWrittenQuestions(List<WrittenQuestion> listWQuestions) {
+		// TODO Auto-generated method stub
+		//开启事务
+		Transaction ts = getSession().beginTransaction();
+		for (WrittenQuestion writtenQuestion : listWQuestions) {
+			//执行添加，返回新纪录的主键
+			getSession().save(writtenQuestion);
+		}
+		//提交事务
+		ts.commit();
+	}
 
 }

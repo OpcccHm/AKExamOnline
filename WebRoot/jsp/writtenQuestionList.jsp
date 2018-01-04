@@ -1,9 +1,15 @@
 <%@page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s"  uri="/struts-tags" %>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<base target="_self" />
+<base href="<%=basePath%>" target="_self">
 <title>试卷详情</title>
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -41,7 +47,7 @@ font {
 		var height = (screen.height - 450) / 2;
 		var dialog = window
 				.open(
-						"../jsp/addWrittenQuestion.jsp?csId=${course.csId }&csName=${course.csName}",
+						"jsp/addWrittenQuestion.jsp?csId=${course.csId }&csName=${course.csName}",
 						"window",
 						"width=450px,height=450px,top="
 								+ height
@@ -80,15 +86,15 @@ font {
 		<br /> <input type="button" value="添加试题" onclick="showAddQuestion();"
 			style="float: left;margin-right: 20px;">
 		<form
-			action=""
+			action="question/question_inportWrittenQuestions?course.csId=${course.csId }&course.csName=${course.csName}"
 			method="post" enctype="multipart/form-data"
 			style="float: left;margin-right: 20px;">
-			<input type="file" name="file"> <input type="submit"
-				value="导入">
+			<input type="file" name="questionfile">
+			<input type="submit" value="导入">
 		</form>
-		<a href="../file/Template _01.xls"><input type="button"
+		<a href="file/Template _01.xls"><input type="button"
 			value="下载试题模板"></a>
-		<font style="color: red;">仅支持Excel2003版本</font>
+		<font style="color: red;">仅支持xls文件</font>
 	</div>
 	<fieldset id="marginTop">
 		<table width="100%" align="center" id="marginTop" border="1"
@@ -116,7 +122,7 @@ font {
 					<td> <s:property value="#writtenQuestion.optionC"/> </td>
 					<td> <s:property value="#writtenQuestion.optionD"/> </td>
 					<td> <s:property value="#writtenQuestion.answer"/> </td>
-					<td> <s:property value="#writtenQuestion.degress"/> </td>
+					<td> <s:property value="#writtenQuestion.degree"/> </td>
 					<td> <s:property value="#writtenQuestion.chapter"/> </td>
 					<td> 
 						<a href='question/question_getWrittenQuestionById?writtenQuestion.qid=${writtenQuestion.qid }'>编辑</a>

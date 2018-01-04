@@ -1,5 +1,8 @@
 package com.qhit.lh.g4.jay.exam.tkgl.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,6 +16,7 @@ import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
 import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion;
 import com.qhit.lh.g4.jay.exam.tkgl.service.QuestionService;
 import com.qhit.lh.g4.jay.exam.tkgl.service.QuestionServiceImpl;
+import com.qhit.lh.g4.jay.exam.tkgl.utils.PoiReaderExcel;
 
 public class QuestionAction extends ActionSupport {
 	private QuestionService questionService = new QuestionServiceImpl();
@@ -21,8 +25,13 @@ public class QuestionAction extends ActionSupport {
 	private String stage;//阶段
 	private WrittenQuestion writtenQuestion;//笔试题对象
 	private List<Course> listCourses = new ArrayList<>();
+	//试题列表分页数据
 	private PageBean<WrittenQuestion> pageBean = new PageBean<>();
 	private int pageIndex = 1;//指定页,初始化为1
+	//导入试题集合
+	private List<WrittenQuestion> listWQuestions = new ArrayList<>();
+	//导入文件对象
+	private File questionfile;
 	
 	/**
 	 * @return
@@ -75,6 +84,26 @@ public class QuestionAction extends ActionSupport {
 	public String updateWrittenQuestion(){
 		questionService.updateWrittenQuestion(writtenQuestion);
 		return "updateWrittenQuestion";
+	}
+	
+	/**
+	 * @return
+	 * 批量导入笔试题
+	 * @throws FileNotFoundException 
+	 */
+	public String inportWrittenQuestions() throws FileNotFoundException{
+		
+		if(questionfile != null){
+			//1,上传到服务器（struts2）(1,jsp表单提交控件、2，action)
+			FileInputStream fis = new FileInputStream(questionfile);
+			//2,读取excel文件中的数据,获取试题对象集合（POI:1,导包、2，读取数据流获取数据集合）
+			listWQuestions = PoiReaderExcel.readerExcel(fis, course);
+			//3,批量添加到数据库(hibernate)
+			questionService.inportWrittenQuestions(listWQuestions);
+		}else{
+			//上传文件失败的判断，暂时不做
+		}
+		return "inportWrittenQuestions";
 	}
 	
 	public PageBean<WrittenQuestion> getPageBean() {
@@ -133,5 +162,21 @@ public class QuestionAction extends ActionSupport {
 
 	public void setWrittenQuestion(WrittenQuestion writtenQuestion) {
 		this.writtenQuestion = writtenQuestion;
+	}
+
+	public List<WrittenQuestion> getListWQuestions() {
+		return listWQuestions;
+	}
+
+	public void setListWQuestions(List<WrittenQuestion> listWQuestions) {
+		this.listWQuestions = listWQuestions;
+	}
+
+	public File getQuestionfile() {
+		return questionfile;
+	}
+
+	public void setQuestionfile(File questionfile) {
+		this.questionfile = questionfile;
 	}
 }

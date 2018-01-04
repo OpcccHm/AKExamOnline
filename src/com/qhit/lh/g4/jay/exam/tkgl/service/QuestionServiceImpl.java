@@ -40,5 +40,10 @@ public class QuestionServiceImpl implements QuestionService {
 	public void updateWrittenQuestion(WrittenQuestion writtenQuestion) {
 		questionDao.updateWrittenQuestion(writtenQuestion);
 	}
+	
+	@Override
+	public void inportWrittenQuestions(List<WrittenQuestion> listWQuestions) {
+		questionDao.inportWrittenQuestions(listWQuestions);
+	}
 
 }

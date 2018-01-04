@@ -46,4 +46,10 @@ public interface QuestionService {
 	 * 更新数据
 	 */
 	public void updateWrittenQuestion(WrittenQuestion writtenQuestion);
+	
+	/**
+	 * @param listWQuestions
+	 * 批量导入笔试题
+	 */
+	public void inportWrittenQuestions(List<WrittenQuestion> listWQuestions);
 }
