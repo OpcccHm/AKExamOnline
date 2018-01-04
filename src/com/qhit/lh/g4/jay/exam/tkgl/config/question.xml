@@ -13,6 +13,7 @@
         	<result name="listCourse" >/jsp/questionsManage.jsp</result>
         	<result name="listWritten" >/jsp/writtenQuestionList.jsp</result>
         	<result name="addWrittenQuestion">/jsp/closeDialog.jsp</result>
+        	<result name="getWrittenQuestionById">/jsp/updateWrittenQuestion.jsp</result>
         </action>
     </package>
 </struts>

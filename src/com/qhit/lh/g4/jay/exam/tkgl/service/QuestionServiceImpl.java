@@ -14,7 +14,6 @@ public class QuestionServiceImpl implements QuestionService {
 
 	@Override
 	public List<Course> getCourseInfo(Map parameter) {
-		// TODO Auto-generated method stub
 		return questionDao.getCourseInfo(parameter);
 	}
 
@@ -23,14 +22,23 @@ public class QuestionServiceImpl implements QuestionService {
 			PageBean<WrittenQuestion> pageBean, 
 			Course course,
 			int pageIndex) {
-		// TODO Auto-generated method stub
 		return questionDao.getWrittenList(pageBean, course, pageIndex);
 	}
 
 	@Override
 	public void addWrittenQuestion(WrittenQuestion writtenQuestion) {
-		// TODO Auto-generated method stub
 		questionDao.addWrittenQuestion(writtenQuestion);
+	}
+
+	@Override
+	public WrittenQuestion getWrittenQuestionById(
+			WrittenQuestion writtenQuestion) {
+		return questionDao.getWrittenQuestionById(writtenQuestion);
+	}
+
+	@Override
+	public void updateWrittenQuestion(WrittenQuestion writtenQuestion) {
+		questionDao.updateWrittenQuestion(writtenQuestion);
 	}
 
 }

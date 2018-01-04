@@ -75,4 +75,19 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		ts.commit();
 	}
 
+	@Override
+	public WrittenQuestion getWrittenQuestionById(
+			WrittenQuestion writtenQuestion) {
+		
+		return (WrittenQuestion) getSession().get(WrittenQuestion.class, writtenQuestion.getQid());
+	}
+
+	@Override
+	public void updateWrittenQuestion(WrittenQuestion writtenQuestion) {
+		// TODO Auto-generated method stub
+		Transaction ts = getSession().beginTransaction();
+		getSession().update(writtenQuestion);
+		ts.commit();
+	}
+
 }

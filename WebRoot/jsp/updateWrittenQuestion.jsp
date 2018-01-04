@@ -74,7 +74,7 @@ td{
 
 <body>
 	<div class="marginLayout">
-		<form action="question/question_addWrittenQuestion" method="post" name="formAddQuestion"
+		<form action="question/question_updateWrittenQuestion" method="post" name="formAddQuestion"
 			id="formAddQuestion" onsubmit="closeDialog()">
 			<input type="hidden" name="course.csId" value="${param.csId }">
 			<input type="hidden" name="course.csName" value="${param.csName }">
@@ -88,31 +88,39 @@ td{
 					<td align="right"><font>题目类型:</font></td>
 					<td>
 						<select id="qtype" name="writtenQuestion.qtype" onchange="changeOptionType()">
-							<option value="单选" selected="selected">单选</option>
-							<option value="多选">多选</option>
+							<s:if test="writtenQuestion.qtype == '单选'">
+								<option value="单选" selected="selected">单选</option>
+								<option value="多选">多选</option>
+							</s:if>
+							<s:else>
+								<option value="单选">单选</option>
+								<option value="多选" selected="selected">多选</option>
+							</s:else>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td align="right"><font>题目内容:</font></td>
 					<td>
-						<textarea rows="3" cols="30" name="writtenQuestion.qtitle" id="qTitle"></textarea>
+						<textarea rows="3" cols="30" name="writtenQuestion.qtitle" id="qTitle">
+							${writtenQuestion.qtitle }
+						</textarea>
 					</td>
 				</tr>
 				<tr>
 					<td align="right"><font>题目选项:</font></td>
 					<td>
 						<input type="radio" class="options" name="writtenQuestion.answer" value="A" checked="checked">A
-						<input class="textWidth" type="text" name="writtenQuestion.optionA" id="optionA">
+						<input class="textWidth" type="text" name="writtenQuestion.optionA" id="optionA" value="${writtenQuestion.optionA }">
 						<br />
 						<input type="radio" class="options" name="writtenQuestion.answer" value="B">B
-						<input class="textWidth" type="text" name="writtenQuestion.optionB" id="optionB">
+						<input class="textWidth" type="text" name="writtenQuestion.optionB" id="optionB" value="${writtenQuestion.optionB }">
 						<br />
 						<input type="radio" class="options" name="writtenQuestion.answer" value="C">C
-						<input class="textWidth" type="text" name="writtenQuestion.optionC" id="optionC">
+						<input class="textWidth" type="text" name="writtenQuestion.optionC" id="optionC" value="${writtenQuestion.optionC }">
 						<br />
 						<input type="radio" class="options" name="writtenQuestion.answer" value="D">D
-						<input class="textWidth" type="text" name="writtenQuestion.optionD" id="optionD">
+						<input class="textWidth" type="text" name="writtenQuestion.optionD" id="optionD" value="${writtenQuestion.optionD }">
 						<br />
 					</td>
 				</tr>
@@ -120,21 +128,33 @@ td{
 					<td align="right"><font>难易程度:</font></td>
 					<td>
 						<select name="writtenQuestion.degree">
-							<option value="简单" selected="selected">简单</option>
-							<option value="一般">一般</option>
-							<option value="困难">困难</option>
+							<s:if test="writtenQuestion.degree == '简单'">
+								<option value="简单" selected="selected">简单</option>
+								<option value="一般">一般</option>
+								<option value="困难">困难</option>
+							</s:if>
+							<s:elseif test="writtenQuestion.degree == '一般'">
+								<option value="简单">简单</option>
+								<option value="一般" selected="selected">一般</option>
+								<option value="困难">困难</option>
+							</s:elseif>
+							<s:else>
+								<option value="简单">简单</option>
+								<option value="一般">一般</option>
+								<option value="困难" selected="selected">困难</option>
+							</s:else>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td align="right"><font>对应章节:</font></td>
 					<td>
-						<input class="textWidth" type="text" name="writtenQuestion.chapter" id="chapter">
+						<input class="textWidth" type="text" name="writtenQuestion.chapter" id="chapter" value="${writtenQuestion.chapter }">
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" value="添加" onclick="checkData()">
+						<input type="button" value="更新" onclick="checkData()">
 						<input type="reset" value="重置">
 					</td>
 				</tr>

@@ -61,7 +61,7 @@ font {
 		var height = (screen.height - 450) / 2;
 		var res = window
 				.open(
-						"../jsp/addWrittenQuestion.jsp?csId=${course.csId }&csName=${course.csName}",
+						"question/question_getWrittenList?writtenQuestion.qid=${writtenQuestion.qid }",
 						"window",
 						"width=450px,height=450px,top="
 								+ height
@@ -119,7 +119,7 @@ font {
 					<td> <s:property value="#writtenQuestion.degress"/> </td>
 					<td> <s:property value="#writtenQuestion.chapter"/> </td>
 					<td> 
-						<a href='javascript:showMsg()'>编辑</a>
+						<a href='question/question_getWrittenQuestionById?writtenQuestion.qid=${writtenQuestion.qid }'>编辑</a>
 						<a href='javascript:showMsg()'>删除</a>
 					</td>
 				</tr>

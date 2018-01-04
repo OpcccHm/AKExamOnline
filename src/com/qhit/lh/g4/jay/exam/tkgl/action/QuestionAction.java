@@ -67,6 +67,16 @@ public class QuestionAction extends ActionSupport {
 		return "addWrittenQuestion";
 	}
 	
+	public String getWrittenQuestionById(){
+		writtenQuestion = questionService.getWrittenQuestionById(writtenQuestion);
+		return "getWrittenQuestionById";
+	}
+	
+	public String updateWrittenQuestion(){
+		questionService.updateWrittenQuestion(writtenQuestion);
+		return "updateWrittenQuestion";
+	}
+	
 	public PageBean<WrittenQuestion> getPageBean() {
 		return pageBean;
 	}

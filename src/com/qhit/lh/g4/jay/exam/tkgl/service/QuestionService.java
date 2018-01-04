@@ -33,4 +33,17 @@ public interface QuestionService {
 	 * 添加笔试题
 	 */
 	public void addWrittenQuestion(WrittenQuestion writtenQuestion);
+	
+	/**
+	 * @param writtenQuestion
+	 * @return
+	 * 根据id查询试题
+	 */
+	public WrittenQuestion getWrittenQuestionById(WrittenQuestion writtenQuestion);
+	
+	/**
+	 * @param writtenQuestion
+	 * 更新数据
+	 */
+	public void updateWrittenQuestion(WrittenQuestion writtenQuestion);
 }
