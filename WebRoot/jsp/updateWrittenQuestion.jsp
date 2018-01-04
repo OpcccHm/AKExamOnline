@@ -37,7 +37,26 @@ td{
 }
 </style>
 <script type="text/javascript">
+	var options = document.getElementsByName("writtenQuestion.answer");
+	var answer = ${writtenQuestion.answer };
 	
+	function setDefaultType() {
+		for(i=0;i<options.length;i++){
+			options[i].setAttribute("type", "radio");
+			/* if(answer.indexOf(options[i].value) > 0){
+				options[i].checked = true;
+			}else{
+				options[i].checked = false;
+			} */
+		}
+	}
+	
+	function setDefaultOption() {
+		if(){
+			
+		}
+	}
+
 	function checkData() {
 		var v1 = document.getElementById("optionA");
 		var v2 = document.getElementById("optionB");
@@ -54,7 +73,6 @@ td{
 	
 	function changeOptionType() {
 		var qtype = document.getElementById("qtype").value;
-		var options = document.getElementsByName("writtenQuestion.answer");
 		for(i=0;i<options.length;i++){
 			if(qtype == "单选"){
 				options[i].setAttribute("type", "radio");
@@ -68,11 +86,12 @@ td{
 		window.close();
 		return true;
 	}
+	
 </script>
 
 </head>
 
-<body>
+<body onload="setDefaultType()">
 	<div class="marginLayout">
 		<form action="question/question_updateWrittenQuestion" method="post" name="formAddQuestion"
 			id="formAddQuestion" onsubmit="closeDialog()">
@@ -110,16 +129,16 @@ td{
 				<tr>
 					<td align="right"><font>题目选项:</font></td>
 					<td>
-						<input type="radio" class="options" name="writtenQuestion.answer" value="A" checked="checked">A
+						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="A" fieldValue="A" theme="simple"/> A
 						<input class="textWidth" type="text" name="writtenQuestion.optionA" id="optionA" value="${writtenQuestion.optionA }">
 						<br />
-						<input type="radio" class="options" name="writtenQuestion.answer" value="B">B
+						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="B" fieldValue="B" theme="simple"/>B
 						<input class="textWidth" type="text" name="writtenQuestion.optionB" id="optionB" value="${writtenQuestion.optionB }">
 						<br />
-						<input type="radio" class="options" name="writtenQuestion.answer" value="C">C
+						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="C" fieldValue="C" theme="simple"/>C
 						<input class="textWidth" type="text" name="writtenQuestion.optionC" id="optionC" value="${writtenQuestion.optionC }">
 						<br />
-						<input type="radio" class="options" name="writtenQuestion.answer" value="D">D
+						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="D" fieldValue="D" theme="simple"/>D
 						<input class="textWidth" type="text" name="writtenQuestion.optionD" id="optionD" value="${writtenQuestion.optionD }">
 						<br />
 					</td>
