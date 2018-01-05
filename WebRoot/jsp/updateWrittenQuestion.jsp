@@ -38,25 +38,27 @@ td{
 </style>
 <script type="text/javascript">
 	var options = document.getElementsByName("writtenQuestion.answer");
-	var answer = ${writtenQuestion.answer };
+	var answer = "${writtenQuestion.answer }";
 	
-	function setDefaultType() {
+	//根据试题类型改变选项的类型和值
+	function setDefaultOptions() {
+		var qtype = document.getElementById("qtype").value;
 		for(i=0;i<options.length;i++){
-			options[i].setAttribute("type", "radio");
-			/* if(answer.indexOf(options[i].value) > 0){
+			//更新选项类型
+			if(qtype == "单选"){
+				options[i].setAttribute("type", "radio");
+			}else{
+				options[i].setAttribute("type", "checkbox");
+			}
+			//更改选项的值
+			if(answer.indexOf(options[i].value) >= 0){
 				options[i].checked = true;
 			}else{
 				options[i].checked = false;
-			} */
+			}
 		}
 	}
 	
-	function setDefaultOption() {
-		if(){
-			
-		}
-	}
-
 	function checkData() {
 		var v1 = document.getElementById("optionA");
 		var v2 = document.getElementById("optionB");
@@ -71,17 +73,6 @@ td{
 		}
 	}
 	
-	function changeOptionType() {
-		var qtype = document.getElementById("qtype").value;
-		for(i=0;i<options.length;i++){
-			if(qtype == "单选"){
-				options[i].setAttribute("type", "radio");
-			}else{
-				options[i].setAttribute("type", "checkbox");
-			}
-		}
-	}
-	
 	function closeDialog() {
 		window.close();
 		return true;
@@ -91,13 +82,14 @@ td{
 
 </head>
 
-<body onload="setDefaultType()">
+<body onload="setDefaultOptions()">
 	<div class="marginLayout">
 		<form action="question/question_updateWrittenQuestion" method="post" name="formAddQuestion"
 			id="formAddQuestion" onsubmit="closeDialog()">
 			<input type="hidden" name="course.csId" value="${param.csId }">
 			<input type="hidden" name="course.csName" value="${param.csName }">
 			<input type="hidden" name="writtenQuestion.csId" value="${param.csId }">
+			<input type="hidden" name="writtenQuestion.qid" value="${writtenQuestion.qid }">
 			<table class="marginLayout">
 				<tr>
 					<td align="right"><font>科目名称:</font></td>
@@ -106,7 +98,7 @@ td{
 				<tr>
 					<td align="right"><font>题目类型:</font></td>
 					<td>
-						<select id="qtype" name="writtenQuestion.qtype" onchange="changeOptionType()">
+						<select id="qtype" name="writtenQuestion.qtype" onchange="setDefaultOptions()">
 							<s:if test="writtenQuestion.qtype == '单选'">
 								<option value="单选" selected="selected">单选</option>
 								<option value="多选">多选</option>
@@ -129,16 +121,16 @@ td{
 				<tr>
 					<td align="right"><font>题目选项:</font></td>
 					<td>
-						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="A" fieldValue="A" theme="simple"/> A
+						<input type="radio" class="options" name="writtenQuestion.answer" value="A">A
 						<input class="textWidth" type="text" name="writtenQuestion.optionA" id="optionA" value="${writtenQuestion.optionA }">
 						<br />
-						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="B" fieldValue="B" theme="simple"/>B
+						<input type="radio" class="options" name="writtenQuestion.answer" value="B">B
 						<input class="textWidth" type="text" name="writtenQuestion.optionB" id="optionB" value="${writtenQuestion.optionB }">
 						<br />
-						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="C" fieldValue="C" theme="simple"/>C
+						<input type="radio" class="options" name="writtenQuestion.answer" value="C">C
 						<input class="textWidth" type="text" name="writtenQuestion.optionC" id="optionC" value="${writtenQuestion.optionC }">
 						<br />
-						<s:checkbox cssClass="options" name="writtenQuestion.answer" value="D" fieldValue="D" theme="simple"/>D
+						<input type="radio" class="options" name="writtenQuestion.answer" value="D">D
 						<input class="textWidth" type="text" name="writtenQuestion.optionD" id="optionD" value="${writtenQuestion.optionD }">
 						<br />
 					</td>

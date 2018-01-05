@@ -13,7 +13,12 @@
         	<result name="listCourse" >/jsp/questionsManage.jsp</result>
         	<result name="listWritten" >/jsp/writtenQuestionList.jsp</result>
         	<result name="addWrittenQuestion">/jsp/closeDialog.jsp</result>
-        	<result name="getWrittenQuestionById">/jsp/updateWrittenQuestion.jsp</result>
+        	<result name="updateWrittenQuestion">/jsp/closeDialog.jsp</result>
+        	<!-- 请求转发，保留参数课程对象 -->
+        	<result name="getWrittenQuestionById" type="dispatcher">
+        		/jsp/updateWrittenQuestion.jsp
+        	</result>
+        	<!-- 在Result中配置请求重定向到action请求，并添加参数 -->
         	<result name="inportWrittenQuestions" type="redirectAction">
         		<param name="namespace">/question</param>
         		<param name="actionName">question_getWrittenList</param>

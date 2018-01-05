@@ -65,15 +65,21 @@ font {
 	function showUpdateQuestion(qid) {
 		var width = (screen.width - 450) / 2;
 		var height = (screen.height - 450) / 2;
-		var res = window
+		var dialog = window
 				.open(
-						"question/question_getWrittenList?writtenQuestion.qid=${writtenQuestion.qid }",
+						"question/question_getWrittenQuestionById?csId=${course.csId }&csName=${course.csName}&writtenQuestion.qid="+qid,
 						"window",
 						"width=450px,height=450px,top="
 								+ height
 								+ ", left="
 								+ width
 								+ ", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+		//轮询窗口是否关闭,关闭的话刷新数据
+		setInterval(function(){
+			if(dialog != null && dialog.closed){
+				window.location.reload(true);
+			}
+		}, 800);
 	}
 	function showMsg() {
 		alert("不实现!");
@@ -125,7 +131,7 @@ font {
 					<td> <s:property value="#writtenQuestion.degree"/> </td>
 					<td> <s:property value="#writtenQuestion.chapter"/> </td>
 					<td> 
-						<a href='question/question_getWrittenQuestionById?writtenQuestion.qid=${writtenQuestion.qid }'>编辑</a>
+						<a href='javascript:showUpdateQuestion(${writtenQuestion.qid})'>编辑</a>
 						<a href='javascript:showMsg()'>删除</a>
 					</td>
 				</tr>

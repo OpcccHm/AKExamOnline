@@ -20,7 +20,7 @@ public class PoiReaderExcel {
 	@SuppressWarnings("resource")
 	public static List<WrittenQuestion> readerExcel(InputStream is,Course course) {
 		List<WrittenQuestion> listQuestion = new ArrayList<WrittenQuestion>();
-		//声明工作簿
+		//声明并打开工作簿
 		Workbook workbook = null;
 		try{
 			//读取数据流中的文件对象
@@ -83,8 +83,9 @@ public class PoiReaderExcel {
 						break;
 					}
 				}
+				//设置课程编号
 				question.setCsId(course.getCsId());
-				
+				//添加试题和课程的关系
 				question.setCourse(course);
 				//把读取的试题对象保存到集合中
 				listQuestion.add(question);

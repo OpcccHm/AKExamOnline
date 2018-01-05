@@ -1,5 +1,9 @@
 package com.qhit.lh.g4.jay.exam;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.junit.Test;
 
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
@@ -20,5 +24,15 @@ public class WrittenQuestionTest {
 		pageBean = questionService.getWrittenList(pageBean, course, 1);
 		
 		System.out.println(pageBean.getItems().get(0).getQtitle());;
+	}
+	
+	@Test
+	public void getCourseInfo(){
+		Map<String, String> map = new HashMap<String, String>();
+		List<Course> listCourses = questionService.getCourseInfo(map);
+		
+		for (Course course : listCourses) {
+			System.out.println(course.getCsName()+":"+course.getWrittenQuestions().size());
+		}
 	}
 }

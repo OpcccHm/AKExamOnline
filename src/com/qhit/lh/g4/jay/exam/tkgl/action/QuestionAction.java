@@ -68,20 +68,30 @@ public class QuestionAction extends ActionSupport {
 	 */
 	public String addWrittenQuestion(){
 		System.out.println(writtenQuestion.getCsId());
+		//设置课程试题的关联
 		writtenQuestion.setCourse(course);
-		//接收并保存参数
-		ServletActionContext.getRequest().setAttribute("csid", course.getCsId());
-		ServletActionContext.getRequest().setAttribute("csName", course.getCsId());
+		
 		questionService.addWrittenQuestion(writtenQuestion);
 		return "addWrittenQuestion";
 	}
 	
+	/**
+	 * @return
+	 * 根据试题编号查询试题对象
+	 */
 	public String getWrittenQuestionById(){
 		writtenQuestion = questionService.getWrittenQuestionById(writtenQuestion);
 		return "getWrittenQuestionById";
 	}
 	
+	/**
+	 * @return
+	 * 更新
+	 */
 	public String updateWrittenQuestion(){
+		//设置关联
+		writtenQuestion.setCourse(course);
+		
 		questionService.updateWrittenQuestion(writtenQuestion);
 		return "updateWrittenQuestion";
 	}
