@@ -85,7 +85,7 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 	@Override
 	public void updateWrittenQuestion(WrittenQuestion writtenQuestion) {
 		// TODO Auto-generated method stub
-		//清除session中缓存对象
+		//清除session中缓存对象:http://blog.csdn.net/jayliu1989/article/details/78979022
 		getSession().clear();
 		Transaction ts = getSession().beginTransaction();
 		getSession().update(writtenQuestion);
