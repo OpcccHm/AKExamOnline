@@ -87,8 +87,6 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		// TODO Auto-generated method stub
 		//清除session中缓存对象
 		getSession().clear();
-//		getSession().refresh(writtenQuestion);
-//		getSession().merge(writtenQuestion);
 		Transaction ts = getSession().beginTransaction();
 		getSession().update(writtenQuestion);
 		ts.commit();
