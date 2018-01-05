@@ -11,9 +11,33 @@ Target Server Type    : SQL Server
 Target Server Version : 130000
 File Encoding         : 65001
 
-Date: 2018-01-02 22:33:29
+Date: 2018-01-05 21:58:28
 */
 
+
+-- ----------------------------
+-- Table structure for paper_class
+-- ----------------------------
+DROP TABLE [dbo].[paper_class]
+GO
+CREATE TABLE [dbo].[paper_class] (
+[pcId] int NOT NULL IDENTITY(1,1) ,
+[pId] int NOT NULL ,
+[cCode] varchar(20) NOT NULL ,
+[examDate] date NOT NULL ,
+[endDate] date NOT NULL 
+)
+
+
+GO
+
+-- ----------------------------
+-- Records of paper_class
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[paper_class] ON
+GO
+SET IDENTITY_INSERT [dbo].[paper_class] OFF
+GO
 
 -- ----------------------------
 -- Table structure for t_classInfo
@@ -130,6 +154,34 @@ SET IDENTITY_INSERT [dbo].[t_machineQuestion] OFF
 GO
 
 -- ----------------------------
+-- Table structure for t_paper
+-- ----------------------------
+DROP TABLE [dbo].[t_paper]
+GO
+CREATE TABLE [dbo].[t_paper] (
+[pId] int NOT NULL IDENTITY(1,1) ,
+[pName] varchar(20) NOT NULL ,
+[pTime] int NOT NULL ,
+[pTotalScore] int NOT NULL ,
+[csId] int NOT NULL ,
+[qTotal] int NOT NULL ,
+[qScore] int NOT NULL ,
+[pType] varchar(10) NOT NULL ,
+[pState] varchar(10) NOT NULL 
+)
+
+
+GO
+
+-- ----------------------------
+-- Records of t_paper
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[t_paper] ON
+GO
+SET IDENTITY_INSERT [dbo].[t_paper] OFF
+GO
+
+-- ----------------------------
 -- Table structure for t_student
 -- ----------------------------
 DROP TABLE [dbo].[t_student]
@@ -229,13 +281,40 @@ CREATE TABLE [dbo].[t_writtenQuestion] (
 
 
 GO
+DBCC CHECKIDENT(N'[dbo].[t_writtenQuestion]', RESEED, 1009)
+GO
 
 -- ----------------------------
 -- Records of t_writtenQuestion
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[t_writtenQuestion] ON
 GO
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1001', N'单选', N'111111', N'a', N'b', N'c', N'd', N'A', N'简单', N'1', N'T1')
+GO
+GO
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1006', N'单选', N'计算机大脑是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'D', N'简单', N'1', N'T1')
+GO
+GO
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1007', N'单选', N'计算机输出设备是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'A', N'简单', N'1', N'T1')
+GO
+GO
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1008', N'单选', N'计算机输入设备是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'B', N'简单', N'1', N'T1')
+GO
+GO
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1009', N'单选', N'计算机存储设备是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'C', N'简单', N'1', N'T1')
+GO
+GO
 SET IDENTITY_INSERT [dbo].[t_writtenQuestion] OFF
+GO
+
+-- ----------------------------
+-- Indexes structure for table paper_class
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table paper_class
+-- ----------------------------
+ALTER TABLE [dbo].[paper_class] ADD PRIMARY KEY ([pcId])
 GO
 
 -- ----------------------------
@@ -266,6 +345,16 @@ GO
 -- Primary Key structure for table t_machineQuestion
 -- ----------------------------
 ALTER TABLE [dbo].[t_machineQuestion] ADD PRIMARY KEY ([qId])
+GO
+
+-- ----------------------------
+-- Indexes structure for table t_paper
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table t_paper
+-- ----------------------------
+ALTER TABLE [dbo].[t_paper] ADD PRIMARY KEY ([pId])
 GO
 
 -- ----------------------------

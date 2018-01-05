@@ -154,8 +154,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         	 t = outlookbar.addtitle('后台功能', '后台管理', 1);
              outlookbar.additem('学生信息', t, 'developing.jsp');
              outlookbar.additem('考勤管理', t, 'developing.jsp'); 
-             outlookbar.additem('题库管理', t, 'developing.jsp'); 
-     		 outlookbar.additem('试卷管理', t, 'developing.jsp');
+             outlookbar.additem('题库管理', t, '../question/question_getCourseInfo'); 
+     		 outlookbar.additem('试卷管理', t, '../paper/paper_getPaperList');
              outlookbar.additem('成绩管理', t, 'developing.jsp');
              outlookbar.additem('修改密码', t, 'developing.jsp');
 		}
@@ -166,7 +166,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             outlookbar.additem('班级管理', t, 'developing.jsp');
             outlookbar.additem('学生管理', t, 'developing.jsp');
             outlookbar.additem('题库管理', t, '../question/question_getCourseInfo'); 
-    		outlookbar.additem('试卷管理', t, 'developing.jsp');
+    		outlookbar.additem('试卷管理', t, '../paper/paper_getPaperList');
             outlookbar.additem('成绩管理', t, 'developing.jsp');
             outlookbar.additem('修改密码', t, 'developing.jsp');
 

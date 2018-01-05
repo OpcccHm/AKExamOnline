@@ -46,5 +46,11 @@
         	<key column="cCode"></key>
         	<one-to-many class="com.qhit.lh.g4.jay.exam.common.bean.Student"/>
         </set>
+        
+         <!-- 1-n -->
+        <set name="paperClasses" lazy="false" cascade="save-update">
+        	<key column="cCode"></key>
+        	<one-to-many class="com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass"/>
+        </set>
     </class>
 </hibernate-mapping>

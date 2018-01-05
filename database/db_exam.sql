@@ -107,7 +107,7 @@ create table t_writtenQuestion(
 	chapter varchar(2)--对应章节
 );
 
---机试题目标
+--机试题题目表
 create table t_machineQuestion(
 	qId int primary key identity(1001,1),--题目编号
 	qTitle varchar(100) not null,	--题目标题
@@ -115,5 +115,31 @@ create table t_machineQuestion(
 	csId int not null,	--所属科目
 	chapter varchar(2)--对应章节
 );
+
+
+
+--试卷表
+create table t_paper(
+	pId int primary key identity(1,1),	--试卷编号
+	pName varchar(20) not null,	--试卷名称
+	pTime int not null,	--考试时长
+	pTotalScore int not null,	--总分
+	csId int not null,	--所属科目
+	qTotal int not null,	--已选题目数
+	qScore int not null,	--每题分数
+	pType varchar(10) not null,		--类型（笔试、机试）
+	pState varchar(10) not null,	--试卷的状态编号(未考试：、考试中、考试结束)
+);
+
+
+--班级-试卷关系表
+create table paper_class(
+	pcId int primary key identity(1,1),	--关系编号
+	pId int not null,	--试卷编号
+	cCode varchar(20) not null,	--班级编号
+	examDate DATE not null,--开考时间
+	endDate DATE not null--结束时间
+);
+
 
 

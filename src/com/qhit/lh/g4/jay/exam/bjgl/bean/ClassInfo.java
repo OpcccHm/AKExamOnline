@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.qhit.lh.g4.jay.exam.common.bean.Student;
+import com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass;
 
 /**
  * ClassInfo entity. @author MyEclipse Persistence Tools
@@ -28,6 +29,8 @@ public class ClassInfo implements java.io.Serializable {
 	
 	//1-n
 	private Set<Student> students = new HashSet<>();
+	//1-n
+	private Set<PaperClass> paperClasses = new HashSet<>(); 
 	
 	// Constructors
 
@@ -157,6 +160,14 @@ public class ClassInfo implements java.io.Serializable {
 
 	public void setCremark(String cremark) {
 		this.cremark = cremark;
+	}
+
+	public Set<PaperClass> getPaperClasses() {
+		return paperClasses;
+	}
+
+	public void setPaperClasses(Set<PaperClass> paperClasses) {
+		this.paperClasses = paperClasses;
 	}
 
 }
