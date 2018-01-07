@@ -1,4 +1,8 @@
-package com.qhit.lh.g4.jay.exam.common.bean;
+package com.qhit.lh.g4.jay.exam.jsgl.bean;
+
+import java.util.Date;
+
+import com.qhit.lh.g4.jay.exam.common.bean.User;
 
 /**
  * Teacher entity. @author MyEclipse Persistence Tools
@@ -11,7 +15,7 @@ public class Teacher implements java.io.Serializable {
 	private String tid;
 	private String tname;
 	private String sex;
-	private String birthday;
+	private Date birthday;
 	private String education;
 	private String tel;
 	private String post;
@@ -21,14 +25,6 @@ public class Teacher implements java.io.Serializable {
 	private User user;
 
 	// Constructors
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	/** default constructor */
 	public Teacher() {
@@ -42,7 +38,7 @@ public class Teacher implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public Teacher(String tname, String sex, String birthday, String education,
+	public Teacher(String tname, String sex, Date birthday, String education,
 			String tel, String post, String remarks) {
 		this.tname = tname;
 		this.sex = sex;
@@ -79,11 +75,11 @@ public class Teacher implements java.io.Serializable {
 		this.sex = sex;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return this.birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -117,6 +113,14 @@ public class Teacher implements java.io.Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

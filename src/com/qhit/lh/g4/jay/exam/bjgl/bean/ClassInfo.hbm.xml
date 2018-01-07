@@ -6,45 +6,45 @@
 -->
 <hibernate-mapping>
     <class name="com.qhit.lh.g4.jay.exam.bjgl.bean.ClassInfo" table="t_classInfo" schema="dbo" catalog="db_exam">
-        <id name="ccode" type="java.lang.String">
+        <id name="ccode" type="string">
             <column name="cCode" length="20" />
-            <generator class="native"></generator>
+            <generator class="assigned"></generator>
         </id>
-        <property name="cname" type="java.lang.String">
+        <property name="cname" type="string">
             <column name="cName" length="20" not-null="true" />
         </property>
-        <property name="major" type="java.lang.String" >
+        <property name="major" type="string">
             <column name="major" length="10" not-null="true" />
         </property>
-        <property name="insId" type="java.lang.Integer">
-            <column name="insId" not-null="true" />
+        <property name="insId" type="string">
+            <column name="insId" length="20" not-null="true" />
         </property>
-        <property name="iecId" type="java.lang.Integer">
-            <column name="iecId" not-null="true" />
+        <property name="iecId" type="string">
+            <column name="iecId" length="20" not-null="true" />
         </property>
-        <property name="cdate" type="java.util.Date">
+        <property name="cdate" type="date">
             <column name="cDate" length="10" not-null="true" />
         </property>
-        <property name="g1num" type="java.lang.Integer">
+        <property name="g1num" type="integer">
             <column name="g1Num" />
         </property>
-        <property name="g2num" type="java.lang.Integer">
+        <property name="g2num" type="integer">
             <column name="g2Num" />
         </property>
-        <property name="g3num" type="java.lang.Integer">
+        <property name="g3num" type="integer">
             <column name="g3Num" />
         </property>
-        <property name="csId" type="java.lang.Integer">
+        <property name="csId" type="integer">
             <column name="csId" />
         </property>
-        <property name="cremark" type="java.lang.String">
+        <property name="cremark" type="string">
             <column name="cRemark" length="50" />
         </property>
         
-        <!-- 1-n -->
+         <!-- 1-n -->
         <set name="students" lazy="false" cascade="save-update">
         	<key column="cCode"></key>
-        	<one-to-many class="com.qhit.lh.g4.jay.exam.common.bean.Student"/>
+        	<one-to-many class="com.qhit.lh.g4.jay.exam.xsgl.bean.Student"/>
         </set>
         
          <!-- 1-n -->

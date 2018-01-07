@@ -20,19 +20,84 @@ public class PaperAction extends ActionSupport {
 	private PageBean<Paper> pageBean = new PageBean<>();
 	private int pageIndex = 1;//指定页,初始化为1
 	//条件参数
-	private int csId;
-	private String pType;
-	private String pState;
-
+	private Course course;
+	private Paper paper;
+	
+	/**
+	 * @return
+	 * 获取试卷列表
+	 */
 	public String getPaperList(){
 		//设置参数
 		Map<String, Object> parameter = new HashMap<>();
-		parameter.put("csId", csId);
-		parameter.put("pType", pType);
-		parameter.put("pState", pState);
+		if(course != null){
+			parameter.put("csId", course.getCsId());
+		}
+		if(paper != null){
+			parameter.put("pType", paper.getPtype());
+			parameter.put("pState", paper.getPstate());
+		}
 		//查询题库列表数据
-		//listPapers = paperService.getPaperList(parameter);
 		pageBean = paperService.getPaperList(pageBean, parameter, pageIndex);
+		System.out.println(pageBean.getItems().size());
 		return "listPaper";
 	}
+	
+	/**
+	 * @return
+	 * 随机组卷
+	 */
+	public String createByRandom(){
+		
+		return null;
+	}
+
+	public List<Course> getListCourses() {
+		return listCourses;
+	}
+
+	public List<Paper> getListPapers() {
+		return listPapers;
+	}
+
+	public PageBean<Paper> getPageBean() {
+		return pageBean;
+	}
+
+	public int getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setListCourses(List<Course> listCourses) {
+		this.listCourses = listCourses;
+	}
+
+	public void setListPapers(List<Paper> listPapers) {
+		this.listPapers = listPapers;
+	}
+
+	public void setPageBean(PageBean<Paper> pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
+
+	public Paper getPaper() {
+		return paper;
+	}
+
+	public void setPaper(Paper paper) {
+		this.paper = paper;
+	}
+	
 }

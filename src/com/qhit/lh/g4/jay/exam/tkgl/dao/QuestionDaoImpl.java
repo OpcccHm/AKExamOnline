@@ -3,8 +3,12 @@ package com.qhit.lh.g4.jay.exam.tkgl.dao;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.common.dao.BaseDao;
@@ -42,7 +46,6 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 			PageBean<WrittenQuestion> pageBean, 
 			Course course,
 			int pageIndex) {
-		// TODO Auto-generated method stub
 		//hql语句
 		StringBuffer hql = new StringBuffer();
 		hql.append("select w from WrittenQuestion w where w.csId = :csId");
@@ -66,7 +69,6 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 
 	@Override
 	public void addWrittenQuestion(WrittenQuestion writtenQuestion) {
-		// TODO Auto-generated method stub
 		//开启事务
 		Transaction ts = getSession().beginTransaction();
 		//执行添加，返回新纪录的主键
@@ -84,7 +86,6 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 
 	@Override
 	public void updateWrittenQuestion(WrittenQuestion writtenQuestion) {
-		// TODO Auto-generated method stub
 		//清除session中缓存对象:http://blog.csdn.net/jayliu1989/article/details/78979022
 		getSession().clear();
 		Transaction ts = getSession().beginTransaction();
@@ -94,7 +95,6 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 	
 	@Override
 	public void inportWrittenQuestions(List<WrittenQuestion> listWQuestions) {
-		// TODO Auto-generated method stub
 		//开启事务
 		Transaction ts = getSession().beginTransaction();
 		for (WrittenQuestion writtenQuestion : listWQuestions) {
@@ -103,6 +103,22 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		}
 		//提交事务
 		ts.commit();
+	}
+
+	@Override
+	public int getQuestionsMax(int csId,String qtype,String degree) {
+		// TODO Auto-generated method stub
+		Criteria criteria = getSession().createCriteria(WrittenQuestion.class)
+				.add(Restrictions.eq("csId", csId))
+				.add(Restrictions.eq("qtype", qtype))
+				.add(Restrictions.eq("degree", degree));
+		
+		ProjectionList projectionList = Projections.projectionList()
+				.add(Projections.count("qid"));
+		
+		criteria.setProjection(projectionList);
+		long num = (long) criteria.list().get(0);
+		return (int)num;
 	}
 
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -17,6 +17,7 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<script type="text/javascript" src="js/jQuery.js"></script>
 <style type="text/css">
 span {
 	display: none;
@@ -24,6 +25,10 @@ span {
 
 th {
 	background-color: #666;
+}
+
+td {
+	text-align: center;
 }
 
 #marginTop {
@@ -78,28 +83,52 @@ function showStartExam(pid) {
 function showMsg() {
 	alert("同成绩管理！");
 }
+
+function getCourses() {
+	var url = "${basePath}course/course_getCourses2Json.action";
+	var majorValue = $("#majorSelect").val();
+	var stageValue = $("#stageSelect").val();
+	 $.getJSON(url,
+			 {
+		 		'course.major':majorValue,
+		 		'course.stage':stageValue
+			 },
+			 function(data){
+		    	//alert(JSON.stringify(data));
+		    	$("#csId").empty();
+		    	$("#csId").append("<option value=''>请选择</option>");
+		    	$.each(data, function(i,course){
+		    		$("#csId").append("<option value='"+course.csId+"'>"+course.csName+"</option>");
+		    	});
+			}
+	);
+}
 </script>
 <body>
 	<div>
 		<h3 align="center">试卷列表</h3>
-		<form action="paperManage?cmd=paperList" method="post">
-			方向: <select name="majorSelect" class="margRight">
-				<option value="SCME">SCME</option>
-				<option value="SCCE">SCCE</option>
-			</select> 阶段: <select name="stageSelect" class="margRight">
-				<option value="G1">G1</option>
-				<option value="G2">G2</option>
-				<option value="G3">G3</option>
-			</select> 考试科目: <select name="subSelect" class="margRight">
+		<form action="paper/paper_getPaperList" method="post">
+			方向:
+			<s:select id="majorSelect"
+				list="#{'':'请选择','SCME':'SCME','SCCE':'SCCE'}" name="majorSelect"
+				onchange="getCourses()" />
+			阶段:
+			<s:select id="stageSelect"
+				list="#{'':'请选择','G1':'G1','G2':'G2','G3':'G3'}" name="stageSelect"
+				onchange="getCourses()" />
+			考试科目:
+			<s:select list="{}" name="course.csId" id="csId"
+				listKey="csId" listValue="csName" headerKey="" headerValue="请选择" />
+			<%-- <select name="csId" class="margRight">
+				<option value="">请选择</option>
 				<option value="1">计算机基础</option>
-			</select> 考试类型: <select name="typeSelect" class="margRight">
-				<option value="笔试">笔试</option>
-				<option value="机试">机试</option>
-			</select> 状态: <select name="stateSelect" class="margRight">
-				<option value="未开考">未开考</option>
-				<option value="考试中">考试中</option>
-				<option value="考试结束">考试结束</option>
-			</select> <input type="submit" value="查询" class="margRight">
+			</select> --%>
+			考试类型:
+			<s:select list="#{'':'请选择','笔试':'笔试','机试':'机试'}" name="paper.ptype"></s:select>
+			状态:
+			<s:select list="#{'':'请选择','未开考':'未开考','考试中':'考试中','考试结束':'考试结束'}"
+				name="paper.pstate"></s:select>
+			<input type="submit" value="查询" class="margRight">
 		</form>
 		<div style="margin-top: 20px;">
 			<button onclick="javascript:showRanCrePaper();" class="margRight">随机组卷</button>
@@ -124,32 +153,44 @@ function showMsg() {
 				<s:iterator value="pageBean.Items" var="paper" status="status">
 					<tr>
 						<td>${status.count }</td>
-						<td>${paper.pType }</td>
-						<td>[${paper.course.major }&nbsp;${paper.course.stage }]\n${paper.course.csName }</td>
-						<td>${paper.pName }</td>
+						<td>${paper.ptype }</td>
+						<td>[${paper.course.major }&nbsp;${paper.course.stage }]<br>${paper.course.csName }</td>
+						<td>${paper.pname }</td>
 						<!-- TODO 显示所有班级 -->
-						<td>${paper.paperClasses }</td>
-						<td>${paper.pTime }</td>
+						<td><s:iterator value="#paper.paperClasses" var="paperClass">
+								${paperClass.classInfo.cname }、
+							</s:iterator></td>
+						<td>${paper.ptime }</td>
 						<!-- TODO 状态颜色 -->
-						<td>${paper.pSate }</td>
+						<td><s:if test="#paper.pstate == '未开考'">
+								<font color="red">${paper.pstate }</font>
+							</s:if> <s:elseif test="#paper.pstate == '考试中'">
+								<font color="green">${paper.pstate }</font>
+							</s:elseif> <s:else>
+								<font color="gray">${paper.pstate }</font>
+							</s:else></td>
 						<!-- TODO 根据状态显示不同的操作-->
-						<td>
-							
-						</td>
+						<td><s:if test="#paper.pstate == '未考试'">
+								<a href="">删除</a>
+								<a href="">开始考试</a>
+							</s:if> <s:elseif test="#paper.pstate == '考试中'">
+								<a href="">结束考试</a>
+							</s:elseif> <s:else>
+								<a href="">查看成绩</a>
+							</s:else> <a href="">查看试卷</a></td>
 					</tr>
 				</s:iterator>
 			</table>
 
 			<div align="right" id="marginTop">
-				第${pageBean.currentIndex }页， 共${pageBean.totalPage }页&nbsp;&nbsp;
-			<a
-				href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=1">首页</a>&nbsp;
-			<a
-				href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.preIndex }">上一页</a>&nbsp;
-			<a
-				href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.nextIndex }">下一页</a>&nbsp;
-			<a
-				href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.totalPage }">末页</a>
+				第${pageBean.currentIndex }页， 共${pageBean.totalPage }页&nbsp;&nbsp; <a
+					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=1">首页</a>&nbsp;
+				<a
+					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.preIndex }">上一页</a>&nbsp;
+				<a
+					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.nextIndex }">下一页</a>&nbsp;
+				<a
+					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.totalPage }">末页</a>
 			</div>
 		</fieldset>
 	</div>

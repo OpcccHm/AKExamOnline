@@ -6,9 +6,9 @@ package com.qhit.lh.g4.jay.exam;
 import org.hibernate.Transaction;
 import org.junit.Test;
 
-import com.qhit.lh.g4.jay.exam.common.bean.Teacher;
 import com.qhit.lh.g4.jay.exam.common.bean.User;
 import com.qhit.lh.g4.jay.exam.common.dao.BaseDao;
+import com.qhit.lh.g4.jay.exam.jsgl.bean.Teacher;
 
 /**
  * @author admin

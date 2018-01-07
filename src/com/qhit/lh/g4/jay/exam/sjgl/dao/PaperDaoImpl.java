@@ -20,10 +20,10 @@ public class PaperDaoImpl extends BaseDao implements PaperDao {
 			hql.append(" and paper.csId = :csId");
 		}
 		if(parameter.get("pType") != null && !"".equals(parameter.get("pType"))){
-			hql.append(" and paper.pType = :pType");
+			hql.append(" and paper.ptype = :pType");
 		}
 		if(parameter.get("pState") != null && !"".equals(parameter.get("pState"))){
-			hql.append(" and paper.pState = :pState");
+			hql.append(" and paper.pstate = :pState");
 		}
 		//获取查询器
 		Query query = getSession().createQuery(hql.toString());

@@ -39,18 +39,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		2，s:if判断记录当前查询条件
 	-->
 	<s:form action="/question/question_getCourseInfo" method="post" theme="simple">
-		<s:if test="major != null && major != '' ">
-			<s:select name="major" list="{'SCME','SCCE'}" value="major"></s:select>
-		</s:if>
-		<s:else>
-			<s:select name="major" list="{'SCME','SCCE'}" value="'SCME'"></s:select>
-		</s:else>
-		<s:if test="stage != null && stage != '' ">
-			<s:select name="stage" list="{'G1','G2','G3'}" value="stage" ></s:select>
-		</s:if>
-		<s:else>
-			<s:select name="stage" list="{'G1','G2','G3'}" value="'G1'" ></s:select>
-		</s:else>
+		<s:select name="major" list="{'SCME','SCCE'}"></s:select>
+		<s:select name="stage" list="{'G1','G2','G3'}"></s:select>
 		<s:submit value="查询"></s:submit>
 	</s:form>
 	

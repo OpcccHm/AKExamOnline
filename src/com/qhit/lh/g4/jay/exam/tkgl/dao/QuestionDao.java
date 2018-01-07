@@ -8,6 +8,12 @@ import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
 import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion;
 
 public interface QuestionDao {
+	
+	/**
+	 * @return
+	 * 获取题目数
+	 */
+	public int getQuestionsMax(int csId,String qtype,String degree);
 	/**
 	 * 题库管理
 	 * @param mjId

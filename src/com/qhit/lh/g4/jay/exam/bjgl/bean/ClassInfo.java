@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.qhit.lh.g4.jay.exam.common.bean.Student;
 import com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass;
+import com.qhit.lh.g4.jay.exam.xsgl.bean.Student;
 
 /**
  * ClassInfo entity. @author MyEclipse Persistence Tools
@@ -18,37 +18,30 @@ public class ClassInfo implements java.io.Serializable {
 	private String ccode;
 	private String cname;
 	private String major;
-	private Integer insId;
-	private Integer iecId;
+	private String insId;
+	private String iecId;
 	private Date cdate;
 	private Integer g1num;
 	private Integer g2num;
 	private Integer g3num;
 	private Integer csId;
 	private String cremark;
-	
+
 	//1-n
 	private Set<Student> students = new HashSet<>();
 	//1-n
 	private Set<PaperClass> paperClasses = new HashSet<>(); 
-	
+
 	// Constructors
-
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
 
 	/** default constructor */
 	public ClassInfo() {
 	}
 
 	/** minimal constructor */
-	public ClassInfo(String cname, String major, Integer insId, Integer iecId,
-			Date cdate) {
+	public ClassInfo(String ccode, String cname, String major, String insId,
+			String iecId, Date cdate) {
+		this.ccode = ccode;
 		this.cname = cname;
 		this.major = major;
 		this.insId = insId;
@@ -57,9 +50,10 @@ public class ClassInfo implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public ClassInfo(String cname, String major, Integer insId, Integer iecId,
-			Date cdate, Integer g1num, Integer g2num, Integer g3num,
-			Integer csId, String cremark) {
+	public ClassInfo(String ccode, String cname, String major, String insId,
+			String iecId, Date cdate, Integer g1num, Integer g2num,
+			Integer g3num, Integer csId, String cremark) {
+		this.ccode = ccode;
 		this.cname = cname;
 		this.major = major;
 		this.insId = insId;
@@ -91,26 +85,26 @@ public class ClassInfo implements java.io.Serializable {
 	}
 
 	public String getMajor() {
-		return major;
+		return this.major;
 	}
 
 	public void setMajor(String major) {
 		this.major = major;
 	}
 
-	public Integer getInsId() {
+	public String getInsId() {
 		return this.insId;
 	}
 
-	public void setInsId(Integer insId) {
+	public void setInsId(String insId) {
 		this.insId = insId;
 	}
 
-	public Integer getIecId() {
+	public String getIecId() {
 		return this.iecId;
 	}
 
-	public void setIecId(Integer iecId) {
+	public void setIecId(String iecId) {
 		this.iecId = iecId;
 	}
 
@@ -162,8 +156,16 @@ public class ClassInfo implements java.io.Serializable {
 		this.cremark = cremark;
 	}
 
+	public Set<Student> getStudents() {
+		return students;
+	}
+
 	public Set<PaperClass> getPaperClasses() {
 		return paperClasses;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 
 	public void setPaperClasses(Set<PaperClass> paperClasses) {

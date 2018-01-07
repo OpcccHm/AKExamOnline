@@ -14,7 +14,7 @@
             <column name="pId" not-null="true" />
         </property>
         <property name="ccode" type="java.lang.String" insert="false" update="false">
-            <column name="cCode" not-null="true" />
+            <column name="cCode" length="20" not-null="true" />
         </property>
         <property name="examDate" type="java.util.Date">
             <column name="examDate" length="10" not-null="true" />

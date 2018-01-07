@@ -6,9 +6,9 @@ package com.qhit.lh.g4.jay.exam;
 import org.hibernate.Transaction;
 import org.junit.Test;
 
-import com.qhit.lh.g4.jay.exam.common.bean.Student;
 import com.qhit.lh.g4.jay.exam.common.bean.User;
 import com.qhit.lh.g4.jay.exam.common.dao.BaseDao;
+import com.qhit.lh.g4.jay.exam.xsgl.bean.Student;
 
 /**
  * @author admin
@@ -23,7 +23,6 @@ public class StudentTest extends BaseDao {
 		student.setSname("张三");
 		student.setSex("男");
 		student.setEnterSchool("2016");
-		student.setcCode("");
 		//分配账户
 		User user = new User();
 		user.setName("16030221001");

@@ -40,7 +40,7 @@
 			class="com.qhit.lh.g4.jay.exam.kmgl.bean.Course" column="csId" lazy="false"></many-to-one>
 		<!-- 1-n -->
 		<set name="paperClasses" lazy="false" cascade="save-update">
-			<key column="cCode"></key>
+			<key column="pId"></key>
 			<one-to-many class="com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass" />
 		</set>
 	</class>

@@ -26,14 +26,6 @@ public class Paper implements java.io.Serializable {
 	//n-1
 	private Course course;
 
-	public Course getCourse() {
-		return course;
-	}
-
-	public void setCourse(Course course) {
-		this.course = course;
-	}
-
 	//1-n
 	private Set<PaperClass> paperClasses = new HashSet<>(); 
 
@@ -137,6 +129,14 @@ public class Paper implements java.io.Serializable {
 
 	public void setPaperClasses(Set<PaperClass> paperClasses) {
 		this.paperClasses = paperClasses;
+	}
+
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 
 }

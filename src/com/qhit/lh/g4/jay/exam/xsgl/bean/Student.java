@@ -1,6 +1,8 @@
-package com.qhit.lh.g4.jay.exam.common.bean;
+package com.qhit.lh.g4.jay.exam.xsgl.bean;
 
-import com.qhit.lh.g4.jay.exam.bjgl.bean.ClassInfo;
+import java.util.Date;
+
+import com.qhit.lh.g4.jay.exam.common.bean.User;
 
 /**
  * Student entity. @author MyEclipse Persistence Tools
@@ -14,9 +16,9 @@ public class Student implements java.io.Serializable {
 	private String sname;
 	private String sex;
 	private String enterSchool;
-	private String cCode;
+	private String ccode;
 	private String photo;
-	private String birthday;
+	private Date birthday;
 	private String idcard;
 	private String poutlook;
 	private String province;
@@ -30,42 +32,33 @@ public class Student implements java.io.Serializable {
 	private String baseInfo;
 	private String eduBg;
 	private String remarks;
-	
 	//单向1-1
 	private User user;
-	
+
 	// Constructors
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	/** default constructor */
 	public Student() {
 	}
 
 	/** minimal constructor */
-	public Student(String sname, String sex, String enterSchool, String cCode) {
+	public Student(String sname, String sex, String enterSchool, String ccode) {
 		this.sname = sname;
 		this.sex = sex;
 		this.enterSchool = enterSchool;
-		this.cCode = cCode;
+		this.ccode = ccode;
 	}
 
 	/** full constructor */
-	public Student(String sname, String sex, String enterSchool, String cCode,
-			String photo, String birthday, String idcard, String poutlook,
+	public Student(String sname, String sex, String enterSchool, String ccode,
+			String photo, Date birthday, String idcard, String poutlook,
 			String province, String city, String tel, String address,
 			String ptel, String prelation, String hostelBuil, String hostelNo,
 			String baseInfo, String eduBg, String remarks) {
 		this.sname = sname;
 		this.sex = sex;
 		this.enterSchool = enterSchool;
-		this.cCode = cCode;
+		this.ccode = ccode;
 		this.photo = photo;
 		this.birthday = birthday;
 		this.idcard = idcard;
@@ -117,12 +110,12 @@ public class Student implements java.io.Serializable {
 		this.enterSchool = enterSchool;
 	}
 
-	public String getcCode() {
-		return cCode;
+	public String getCcode() {
+		return this.ccode;
 	}
 
-	public void setcCode(String cCode) {
-		this.cCode = cCode;
+	public void setCcode(String ccode) {
+		this.ccode = ccode;
 	}
 
 	public String getPhoto() {
@@ -133,11 +126,11 @@ public class Student implements java.io.Serializable {
 		this.photo = photo;
 	}
 
-	public String getBirthday() {
+	public Date getBirthday() {
 		return this.birthday;
 	}
 
-	public void setBirthday(String birthday) {
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
 
@@ -243,6 +236,14 @@ public class Student implements java.io.Serializable {
 
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

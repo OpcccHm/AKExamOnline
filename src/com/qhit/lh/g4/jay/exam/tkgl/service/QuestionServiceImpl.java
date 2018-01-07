@@ -46,4 +46,10 @@ public class QuestionServiceImpl implements QuestionService {
 		questionDao.inportWrittenQuestions(listWQuestions);
 	}
 
+	@Override
+	public int getQuestionsMax(int csId,String qtype,String degree) {
+		// TODO Auto-generated method stub
+		return questionDao.getQuestionsMax(csId, qtype, degree);
+	}
+
 }

@@ -21,10 +21,6 @@
 		<property name="format_sql">true</property>
 		<property name="jdbc.use_scrollable_resultset">false</property>
 		<mapping
-			resource="com/qhit/lh/g4/jay/exam/common/bean/Student.hbm.xml" />
-		<mapping
-			resource="com/qhit/lh/g4/jay/exam/common/bean/Teacher.hbm.xml" />
-		<mapping
 			resource="com/qhit/lh/g4/jay/exam/common/bean/User.hbm.xml" />
 		<mapping
 			resource="com/qhit/lh/g4/jay/exam/bjgl/bean/ClassInfo.hbm.xml" />
@@ -38,6 +34,10 @@
 			resource="com/qhit/lh/g4/jay/exam/sjgl/bean/Paper.hbm.xml" />
 		<mapping
 			resource="com/qhit/lh/g4/jay/exam/sjgl/bean/PaperClass.hbm.xml" />
+		<mapping
+			resource="com/qhit/lh/g4/jay/exam/jsgl/bean/Teacher.hbm.xml" />
+		<mapping
+			resource="com/qhit/lh/g4/jay/exam/xsgl/bean/Student.hbm.xml" />
 
 	</session-factory>
 

@@ -33,6 +33,7 @@ public class QuestionAction extends ActionSupport {
 	//导入文件对象
 	private File questionfile;
 	
+	private int radioEasyMax,radioNormalMax,radioDiffMax,cbEasyMax,cbNormalMax,cbDiffMax;
 	/**
 	 * @return
 	 * 题库列表
@@ -48,8 +49,18 @@ public class QuestionAction extends ActionSupport {
 		}
 		//查询题库列表数据
 		listCourses = questionService.getCourseInfo(parameter);
-		System.out.println(listCourses.size());
 		return "listCourse";
+	}
+	
+	public String getQuestionMax(){
+		radioEasyMax = questionService.getQuestionsMax(writtenQuestion.getCsId(), "单选", "简单");
+		radioNormalMax = questionService.getQuestionsMax(writtenQuestion.getCsId(), "单选", "一般");
+		radioDiffMax = questionService.getQuestionsMax(writtenQuestion.getCsId(), "单选", "困难");
+		cbEasyMax = questionService.getQuestionsMax(writtenQuestion.getCsId(), "多选", "简单");
+		cbNormalMax = questionService.getQuestionsMax(writtenQuestion.getCsId(), "多选", "一般");
+		cbDiffMax = questionService.getQuestionsMax(writtenQuestion.getCsId(), "多选", "困难");
+		
+		return "getQuestionMax";
 	}
 	
 	/**
@@ -188,5 +199,53 @@ public class QuestionAction extends ActionSupport {
 
 	public void setQuestionfile(File questionfile) {
 		this.questionfile = questionfile;
+	}
+
+	public int getRadioEasyMax() {
+		return radioEasyMax;
+	}
+
+	public int getRadioNormalMax() {
+		return radioNormalMax;
+	}
+
+	public int getRadioDiffMax() {
+		return radioDiffMax;
+	}
+
+	public int getCbEasyMax() {
+		return cbEasyMax;
+	}
+
+	public int getCbNormalMax() {
+		return cbNormalMax;
+	}
+
+	public int getCbDiffMax() {
+		return cbDiffMax;
+	}
+
+	public void setRadioEasyMax(int radioEasyMax) {
+		this.radioEasyMax = radioEasyMax;
+	}
+
+	public void setRadioNormalMax(int radioNormalMax) {
+		this.radioNormalMax = radioNormalMax;
+	}
+
+	public void setRadioDiffMax(int radioDiffMax) {
+		this.radioDiffMax = radioDiffMax;
+	}
+
+	public void setCbEasyMax(int cbEasyMax) {
+		this.cbEasyMax = cbEasyMax;
+	}
+
+	public void setCbNormalMax(int cbNormalMax) {
+		this.cbNormalMax = cbNormalMax;
+	}
+
+	public void setCbDiffMax(int cbDiffMax) {
+		this.cbDiffMax = cbDiffMax;
 	}
 }
