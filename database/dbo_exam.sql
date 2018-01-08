@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 130000
 File Encoding         : 65001
 
-Date: 2018-01-05 21:58:28
+Date: 2018-01-08 13:44:45
 */
 
 
@@ -30,11 +30,16 @@ CREATE TABLE [dbo].[paper_class] (
 
 
 GO
+DBCC CHECKIDENT(N'[dbo].[paper_class]', RESEED, 2)
+GO
 
 -- ----------------------------
 -- Records of paper_class
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[paper_class] ON
+GO
+INSERT INTO [dbo].[paper_class] ([pcId], [pId], [cCode], [examDate], [endDate]) VALUES (N'1', N'1', N'16GR1', N'2018-03-06', N'2018-03-06')
+GO
 GO
 SET IDENTITY_INSERT [dbo].[paper_class] OFF
 GO
@@ -48,8 +53,8 @@ CREATE TABLE [dbo].[t_classInfo] (
 [cCode] varchar(20) NOT NULL ,
 [cName] varchar(20) NOT NULL ,
 [major] varchar(10) NOT NULL ,
-[insId] int NOT NULL ,
-[iecId] int NOT NULL ,
+[insId] varchar(20) NOT NULL ,
+[iecId] varchar(20) NOT NULL ,
 [cDate] date NOT NULL ,
 [g1Num] int NULL ,
 [g2Num] int NULL ,
@@ -64,6 +69,9 @@ GO
 -- ----------------------------
 -- Records of t_classInfo
 -- ----------------------------
+INSERT INTO [dbo].[t_classInfo] ([cCode], [cName], [major], [insId], [iecId], [cDate], [g1Num], [g2Num], [g3Num], [csId], [cRemark]) VALUES (N'16GR1', N'16级高软1班', N'SCME', N'g17719100357', N'g13353952929', N'2016-09-01', null, null, null, N'0', null)
+GO
+GO
 
 -- ----------------------------
 -- Table structure for t_course
@@ -178,6 +186,9 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[t_paper] ON
 GO
+INSERT INTO [dbo].[t_paper] ([pId], [pName], [pTime], [pTotalScore], [csId], [qTotal], [qScore], [pType], [pState]) VALUES (N'1', N'计算机基础考试01', N'60', N'100', N'1', N'50', N'2', N'笔试', N'未开考')
+GO
+GO
 SET IDENTITY_INSERT [dbo].[t_paper] OFF
 GO
 
@@ -190,10 +201,10 @@ CREATE TABLE [dbo].[t_student] (
 [sid] varchar(20) NOT NULL ,
 [sname] varchar(20) NOT NULL ,
 [sex] varchar(2) NOT NULL ,
-[enterSchool] varchar(4) NOT NULL ,
+[enterSchool] varchar(10) NOT NULL ,
 [cCode] varchar(20) NOT NULL ,
 [photo] varchar(50) NULL ,
-[birthday] varchar(20) NULL ,
+[birthday] date NULL ,
 [IDCard] varchar(18) NULL ,
 [pOutlook] varchar(10) NULL ,
 [province] varchar(20) NULL ,
@@ -215,6 +226,9 @@ GO
 -- ----------------------------
 -- Records of t_student
 -- ----------------------------
+INSERT INTO [dbo].[t_student] ([sid], [sname], [sex], [enterSchool], [cCode], [photo], [birthday], [IDCard], [pOutlook], [province], [city], [tel], [address], [ptel], [pRelation], [hostelBuil], [hostelNo], [baseInfo], [eduBg], [remarks]) VALUES (N's18339401079', N'秦大帅', N'男', N'2016', N'16GR1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null)
+GO
+GO
 
 -- ----------------------------
 -- Table structure for t_teacher
@@ -225,7 +239,7 @@ CREATE TABLE [dbo].[t_teacher] (
 [tid] varchar(20) NOT NULL ,
 [tname] varchar(20) NOT NULL ,
 [sex] varchar(2) NOT NULL ,
-[birthday] varchar(20) NULL ,
+[birthday] date NULL ,
 [education] varchar(20) NULL ,
 [tel] varchar(11) NULL ,
 [post] varchar(10) NOT NULL ,
@@ -238,6 +252,12 @@ GO
 -- ----------------------------
 -- Records of t_teacher
 -- ----------------------------
+INSERT INTO [dbo].[t_teacher] ([tid], [tname], [sex], [birthday], [education], [tel], [post], [remarks]) VALUES (N'g13353952929', N'刘文甫', N'男', N'1989-06-12', N'本科', N'13353952929', N'讲师', N'')
+GO
+GO
+INSERT INTO [dbo].[t_teacher] ([tid], [tname], [sex], [birthday], [education], [tel], [post], [remarks]) VALUES (N'g17719100357', N'李佳', N'男', N'1989-01-09', N'本科', N'17719100357', N'班主任', N'')
+GO
+GO
 
 -- ----------------------------
 -- Table structure for t_user
@@ -257,6 +277,15 @@ GO
 -- Records of t_user
 -- ----------------------------
 INSERT INTO [dbo].[t_user] ([name], [pwd], [role]) VALUES (N'admin', N'123456', N'4')
+GO
+GO
+INSERT INTO [dbo].[t_user] ([name], [pwd], [role]) VALUES (N'g13353952929', N'123456', N'2')
+GO
+GO
+INSERT INTO [dbo].[t_user] ([name], [pwd], [role]) VALUES (N'g17719100357', N'123456', N'2')
+GO
+GO
+INSERT INTO [dbo].[t_user] ([name], [pwd], [role]) VALUES (N's18339401079', N'123456', N'1')
 GO
 GO
 
@@ -281,7 +310,7 @@ CREATE TABLE [dbo].[t_writtenQuestion] (
 
 
 GO
-DBCC CHECKIDENT(N'[dbo].[t_writtenQuestion]', RESEED, 1009)
+DBCC CHECKIDENT(N'[dbo].[t_writtenQuestion]', RESEED, 1006)
 GO
 
 -- ----------------------------
@@ -289,19 +318,22 @@ GO
 -- ----------------------------
 SET IDENTITY_INSERT [dbo].[t_writtenQuestion] ON
 GO
-INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1001', N'单选', N'111111', N'a', N'b', N'c', N'd', N'A', N'简单', N'1', N'T1')
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1001', N'单选', N'ss1', N'1', N'1', N'1', N'1', N'A', N'简单', N'1', N'T1')
 GO
 GO
-INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1006', N'单选', N'计算机大脑是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'D', N'简单', N'1', N'T1')
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1002', N'单选', N'ss1', N'1', N'1', N'1', N'1', N'A', N'一般', N'1', N'T2')
 GO
 GO
-INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1007', N'单选', N'计算机输出设备是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'A', N'简单', N'1', N'T1')
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1003', N'单选', N'ss2', N'1', N'1', N'1', N'1', N'A', N'困难', N'1', N'T3')
 GO
 GO
-INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1008', N'单选', N'计算机输入设备是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'B', N'简单', N'1', N'T1')
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1004', N'多选', N'ss3', N'1', N'1', N'1', N'1', N'A', N'简单', N'1', N'T4')
 GO
 GO
-INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1009', N'单选', N'计算机存储设备是哪个硬件？', N'显示器', N'键盘', N'硬盘', N'CPU', N'C', N'简单', N'1', N'T1')
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1005', N'多选', N'ss4', N'1', N'1', N'1', N'1', N'A', N'一般', N'1', N'T5')
+GO
+GO
+INSERT INTO [dbo].[t_writtenQuestion] ([qId], [qType], [qTitle], [optionA], [optionB], [optionC], [optionD], [answer], [degree], [csId], [chapter]) VALUES (N'1006', N'多选', N'ss5', N'1', N'1', N'1', N'1', N'A', N'困难', N'1', N'T6')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[t_writtenQuestion] OFF

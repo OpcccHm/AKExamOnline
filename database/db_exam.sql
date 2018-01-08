@@ -14,21 +14,25 @@ create table t_teacher(
 	tid VARCHAR(20) PRIMARY key,--编号
 	tname varchar(20) not null,--姓名
 	sex varchar(2) not null,--性别
-	birthday VARCHAR(20),--生日
+	birthday date,--生日
 	education varchar(20),--学历
 	tel varchar(11),--手机
 	post varchar(10) not null,--岗位
 	remarks varchar(100)--备注
 );
+
+insert into t_teacher values ('g13353952929','刘文甫','男','1989-06-12','本科','13353952929','讲师','');
+insert into t_teacher values ('g17719010357','李佳','男','1989-01-09','本科','17719100357','班主任','');
+
 --学生表
 create table t_student(
 	sid VARCHAR(20) PRIMARY key,--编号
 	sname varchar(20) not null,--姓名
 	sex varchar(2) not null,--性别
-	enterSchool varchar(4) not null,--入学年份
+	enterSchool varchar(10) not null,--入学年份
 	cCode varchar(20) not null,--所属班级
 	photo VARCHAR(50),--头像
-	birthday varchar(20),--生日
+	birthday date,--生日
 	IDCard VARCHAR(18),--身份证号
 	pOutlook VARCHAR(10),--政治面貌
 	province VARCHAR(20),--省份
@@ -43,6 +47,9 @@ create table t_student(
 	eduBg VARCHAR(20),--教育背景
 	remarks VARCHAR(20)--备注
 );
+
+insert into t_student (sid,sname,sex,enterSchool,cCode) values ('s18339401079','秦大帅','男','2016','16GR1')
+
 --账户表
 create table t_user(
 	name VARCHAR(20) PRIMARY key,--账户名
@@ -52,14 +59,18 @@ create table t_user(
 
 --添加管理员账户
 insert into t_user values ('admin','123456',4);
+insert into t_user values ('g13353952929','123456',2);
+insert into t_user values ('g17719100357','123456',2);
+
+insert into t_user values ('s18339401079','123456',1);
 
 --班级表
 create table t_classInfo(
 	cCode varchar(20) primary key,	--班级代码
 	cName varchar(20) not null,	--班级名称
 	major varchar(10) not null,	--所属专业(SCME\SCCE)
-	insId int not null,	--辅导员（teacher表外键）
-	iecId int not null,	--讲师（teacher表外键）
+	insId varchar(20) not null,	--辅导员（teacher表外键）
+	iecId varchar(20) not null,	--讲师（teacher表外键）
 	cDate date not null,	--开班日期
 	g1Num int,	--班级人数
 	g2Num int,	--班级人数
@@ -67,6 +78,8 @@ create table t_classInfo(
 	csId int DEFAULT 0,	--班级状态(0:禁用，1：启用)
 	cRemark varchar(50)		--备注
 );
+
+insert into t_classInfo (cCode,cName,major,insId,iecId,cDate) values ('16GR1','16级高软1班','SCME','g17719100357','g13353952929','2016-09-01');
 
 --科目表
 create table t_course(
@@ -131,15 +144,21 @@ create table t_paper(
 	pState varchar(10) not null,	--试卷的状态编号(未考试：、考试中、考试结束)
 );
 
+insert into t_paper values ('计算机基础考试01',60,100,1,50,2,'笔试','未开考');
 
 --班级-试卷关系表
 create table paper_class(
 	pcId int primary key identity(1,1),	--关系编号
 	pId int not null,	--试卷编号
 	cCode varchar(20) not null,	--班级编号
-	examDate DATE not null,--开考时间
-	endDate DATE not null--结束时间
+	examDate date not null,--开考时间
+	endDate date not null--结束时间
 );
+
+insert into paper_class values (1,'16GR1','2018-03-06 08:00','2018-03-06 09:00');
+
+
+
 
 
 
