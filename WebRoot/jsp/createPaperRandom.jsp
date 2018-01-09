@@ -52,7 +52,16 @@ function getCourses() {
 
 //TODO 获取当前科目的最大题目数
 function getQuestionMaxNum() {
-	
+	var url = "";
+	$.getJSON(
+		url,
+		{
+			
+		},
+		function(data){
+			
+		}
+	);
 }
 
 //TODO 更新总题数和每题分数

@@ -184,13 +184,13 @@ function getCourses() {
 
 			<div align="right" id="marginTop">
 				第${pageBean.currentIndex }页， 共${pageBean.totalPage }页&nbsp;&nbsp; <a
-					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=1">首页</a>&nbsp;
+					href="paper/paper_getPaperList?course.csId=${course.csId }&paper.ptype=${paper.ptype}&paper.pstate=${paper.pstate }&pageIndex=1">首页</a>&nbsp;
 				<a
-					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.preIndex }">上一页</a>&nbsp;
+					href="paper/paper_getPaperList?course.csId=${course.csId }&paper.ptype=${paper.ptype}&paper.pstate=${paper.pstate }&pageIndex=${pageBean.preIndex }">上一页</a>&nbsp;
 				<a
-					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.nextIndex }">下一页</a>&nbsp;
+					href="paper/paper_getPaperList?course.csId=${course.csId }&paper.ptype=${paper.ptype}&paper.pstate=${paper.pstate }&pageIndex=${pageBean.nextIndex }">下一页</a>&nbsp;
 				<a
-					href="paper/paper_getPaperList?csId=${csId }&pType=${pType}&pState=${pState }&pageIndex=${pageBean.totalPage }">末页</a>
+					href="paper/paper_getPaperList?course.csId=${course.csId }&paper.ptype=${paper.ptype}&paper.pstate=${paper.pstate }&pageIndex=${pageBean.totalPage }">末页</a>
 			</div>
 		</fieldset>
 	</div>
