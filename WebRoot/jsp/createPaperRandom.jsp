@@ -52,21 +52,71 @@ function getCourses() {
 
 //TODO 获取当前科目的最大题目数
 function getQuestionMaxNum() {
-	var url = "";
+	var csId = $("#csId").val();
+	var url = "${basePath}question/question_getQuestionMax";
 	$.getJSON(
 		url,
 		{
-			
+			'writtenQuestion.csId':csId
 		},
 		function(data){
-			
+			radioEasyMax = data.radioEasyMax;
+			radioNormalMax = data.radioNormalMax;
+			radioDiffMax = data.radioDiffMax;
+			cbEasyMax = data.cbEasyMax;
+			cbNormalMax = data.cbNormalMax;
+			cbDiffMax = data.cbDiffMax;
 		}
 	);
 }
 
 //TODO 更新总题数和每题分数
-function getQuestionTotal() {
-	
+function getQuestionTotal(i) {
+	var radioEasy = $("#radioEasy").val();
+	var radioNormal = $("#radioNormal").val();
+	var radioDiff = $("#radioDiff").val();
+	var cbEasy = $("#cbEasy").val();
+	var cbNormal = $("#cbNormal").val();
+	var cbDiff = $("#cbDiff").val();
+	switch (i) {
+	case 1:
+		if(radioEasy > radioEasyMax){
+			alert("简单的单选题目数量不足");
+			return;
+		}
+		break;
+	case 2:
+		if(radioNormal > radioNormalMax){
+			alert("一般的单选题目数量不足");
+			return;
+		}
+		break;
+	case 3:
+		if(radioDiff > radioDiffMax){
+			alert("困难的单选题目数量不足");
+			return;
+		}
+		break;
+	case 4:
+		if(cbEasy > cbEasyMax){
+			alert("简单的多选题目数量不足");
+			return;
+		}
+		break;
+	case 5:
+		if(cbNormal > cbNormalMax){
+			alert("一般的多选题目数量不足");
+			return;
+		}
+		break;
+	case 6:
+		if(cbDiff > cbDiffMax){
+			alert("困难的多选题目数量不足");
+			return;
+		}
+		break;
+	}
+	//$("#qtotal").Text = radioEasy + 
 }
 </script>
 </head>
@@ -108,22 +158,22 @@ function getQuestionTotal() {
 			<tr>
 				<td style="text-align: right;">单选题：</td>
 				<td>
-					简单<input type="text" name="radioEasy" size="2" onchange="getQuestionTotal()"> 
-					一般<input type="text" name="radioNormal" size="2"> 
-					困难<input type="text" name="radioDiff" size="2">
+					简单<input type="text" id="radioEasy" name="radioEasy" size="2" onchange="getQuestionTotal(1)"> 
+					一般<input type="text" id="radioNormal" name="radioNormal" size="2" onchange="getQuestionTotal(2)"> 
+					困难<input type="text" id="radioDiff" name="radioDiff" size="2" onchange="getQuestionTotal(3)">
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align: right;">多选题：</td>
 				<td>
-					简单<input type="text" name="cbEasy" size="2">
-					一般<input type="text" name="cbNormal" size="2"> 
-					困难<input type="text" name="cbDiff" size="2">
+					简单<input type="text" id="cbEasy" name="cbEasy" size="2" onchange="getQuestionTotal(4)">
+					一般<input type="text" id="cbNormal" name="cbNormal" size="2" onchange="getQuestionTotal(5)"> 
+					困难<input type="text" id="cbDiff" name="cbDiff" size="2" onchange="getQuestionTotal(6)">
 				</td>
 			</tr>
 			<tr>
 				<td style="text-align: right;">总题数：</td>
-				<td><input type="text" name="paper.qtotal"></td>
+				<td><input type="text" id="qtotal" name="paper.qtotal"></td>
 			</tr>
 			<tr>
 				<td style="text-align: right;">每题分数：</td>

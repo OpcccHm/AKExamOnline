@@ -42,13 +42,13 @@ td {
 </head>
 <script type="text/javascript">
 function showRanCrePaper() {
-	var width = (screen.width - 550) / 2;
-	var height = (screen.height - 350) / 2;
+	var width = (screen.width - 600) / 2;
+	var height = (screen.height - 400) / 2;
 	var res = window
 			.open(
 					"jsp/createPaperRandom.jsp",
 					"window",
-					"width=550px,height=350px,top="
+					"width=600px,height=400px,top="
 							+ height
 							+ ", left="
 							+ width
@@ -150,30 +150,30 @@ function getCourses() {
 					<th><font color="white">状态</font></th>
 					<th><font color="white">操作</font></th>
 				</tr>
-				<s:iterator value="pageBean.Items" var="paper" status="status">
+				<s:iterator value="pageBean.Items" var="paperInfo" status="status">
 					<tr>
 						<td>${status.count }</td>
-						<td>${paper.ptype }</td>
-						<td>[${paper.course.major }&nbsp;${paper.course.stage }]<br>${paper.course.csName }</td>
-						<td>${paper.pname }</td>
+						<td>${paperInfo.ptype }</td>
+						<td>[${paperInfo.course.major }&nbsp;${paperInfo.course.stage }]<br>${paperInfo.course.csName }</td>
+						<td>${paperInfo.pname }</td>
 						<!-- TODO 显示所有班级 -->
-						<td><s:iterator value="#paper.paperClasses" var="paperClass">
+						<td><s:iterator value="#paperInfo.paperClasses" var="paperClass">
 								${paperClass.classInfo.cname }、
 							</s:iterator></td>
-						<td>${paper.ptime }</td>
+						<td>${paperInfo.ptime }</td>
 						<!-- TODO 状态颜色 -->
-						<td><s:if test="#paper.pstate == '未开考'">
-								<font color="red">${paper.pstate }</font>
-							</s:if> <s:elseif test="#paper.pstate == '考试中'">
-								<font color="green">${paper.pstate }</font>
+						<td><s:if test="#paperInfo.pstate == '未开考'">
+								<font color="red">${paperInfo.pstate }</font>
+							</s:if> <s:elseif test="#paperInfo.pstate == '考试中'">
+								<font color="green">${paperInfo.pstate }</font>
 							</s:elseif> <s:else>
-								<font color="gray">${paper.pstate }</font>
+								<font color="gray">${paperInfo.pstate }</font>
 							</s:else></td>
 						<!-- TODO 根据状态显示不同的操作-->
-						<td><s:if test="#paper.pstate == '未考试'">
+						<td><s:if test="#paperInfo.pstate == '未考试'">
 								<a href="">删除</a>
 								<a href="">开始考试</a>
-							</s:if> <s:elseif test="#paper.pstate == '考试中'">
+							</s:if> <s:elseif test="#paperInfo.pstate == '考试中'">
 								<a href="">结束考试</a>
 							</s:elseif> <s:else>
 								<a href="">查看成绩</a>
