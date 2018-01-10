@@ -121,4 +121,15 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		return (int)num;
 	}
 
+	@Override
+	public List<WrittenQuestion> getQuestionsByType(int csId, String qtype,
+			String degree) {
+		Criteria criteria = getSession().createCriteria(WrittenQuestion.class)
+				.add(Restrictions.eq("csId", csId))
+				.add(Restrictions.eq("qtype", qtype))
+				.add(Restrictions.eq("degree", degree));
+		
+		return criteria.list();
+	}
+
 }

@@ -16,4 +16,9 @@ public class PaperServiceImpl implements PaperService {
 		return paperDao.getPaperList(pageBean, parameter, pageIndex);
 	}
 
+	@Override
+	public void createPaperRandom(Paper paper) {
+		paperDao.createPaperRandom(paper);
+	}
+
 }

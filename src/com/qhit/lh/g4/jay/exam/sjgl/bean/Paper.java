@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
+import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion;
 
 /**
  * Paper entity. @author MyEclipse Persistence Tools
@@ -19,7 +20,7 @@ public class Paper implements java.io.Serializable {
 	private Integer ptotalScore;
 	private Integer csId;
 	private Integer qtotal;
-	private Integer qscore;
+	private Float qscore;
 	private String ptype;
 	private String pstate;
 	
@@ -28,6 +29,8 @@ public class Paper implements java.io.Serializable {
 
 	//1-n
 	private Set<PaperClass> paperClasses = new HashSet<>(); 
+	//m-n
+	private Set<WrittenQuestion> writtenQuestions = new HashSet<>();
 
 	// Constructors
 
@@ -37,7 +40,7 @@ public class Paper implements java.io.Serializable {
 
 	/** full constructor */
 	public Paper(String pname, Integer ptime, Integer ptotalScore,
-			Integer csId, Integer qtotal, Integer qscore, String ptype,
+			Integer csId, Integer qtotal, Float qscore, String ptype,
 			String pstate) {
 		this.pname = pname;
 		this.ptime = ptime;
@@ -99,11 +102,11 @@ public class Paper implements java.io.Serializable {
 		this.qtotal = qtotal;
 	}
 
-	public Integer getQscore() {
+	public Float getQscore() {
 		return this.qscore;
 	}
 
-	public void setQscore(Integer qscore) {
+	public void setQscore(Float qscore) {
 		this.qscore = qscore;
 	}
 
@@ -137,6 +140,14 @@ public class Paper implements java.io.Serializable {
 
 	public void setCourse(Course course) {
 		this.course = course;
+	}
+
+	public Set<WrittenQuestion> getWrittenQuestions() {
+		return writtenQuestions;
+	}
+
+	public void setWrittenQuestions(Set<WrittenQuestion> writtenQuestions) {
+		this.writtenQuestions = writtenQuestions;
 	}
 
 }

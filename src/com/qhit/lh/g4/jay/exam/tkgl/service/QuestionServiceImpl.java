@@ -52,4 +52,11 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.getQuestionsMax(csId, qtype, degree);
 	}
 
+	@Override
+	public List<WrittenQuestion> getQuestionsByType(int csId, String qtype,
+			String degree) {
+		// TODO Auto-generated method stub
+		return questionDao.getQuestionsByType(csId, qtype, degree);
+	}
+
 }

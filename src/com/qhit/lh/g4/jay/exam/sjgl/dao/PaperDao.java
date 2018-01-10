@@ -7,6 +7,12 @@ import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.sjgl.bean.Paper;
 
 public interface PaperDao {
+	
+	/**
+	 * @param paper
+	 * 随机组卷
+	 */
+	public void createPaperRandom(Paper paper);
 
 	/**
 	 * @param parameter

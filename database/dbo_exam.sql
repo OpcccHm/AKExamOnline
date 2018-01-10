@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 130000
 File Encoding         : 65001
 
-Date: 2018-01-08 13:44:45
+Date: 2018-01-10 22:07:09
 */
 
 
@@ -42,6 +42,84 @@ INSERT INTO [dbo].[paper_class] ([pcId], [pId], [cCode], [examDate], [endDate]) 
 GO
 GO
 SET IDENTITY_INSERT [dbo].[paper_class] OFF
+GO
+
+-- ----------------------------
+-- Table structure for paper_wquestion
+-- ----------------------------
+DROP TABLE [dbo].[paper_wquestion]
+GO
+CREATE TABLE [dbo].[paper_wquestion] (
+[id] int NOT NULL IDENTITY(1,1) ,
+[pId] int NOT NULL ,
+[qId] int NOT NULL 
+)
+
+
+GO
+DBCC CHECKIDENT(N'[dbo].[paper_wquestion]', RESEED, 18)
+GO
+
+-- ----------------------------
+-- Records of paper_wquestion
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[paper_wquestion] ON
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'1', N'3', N'1003')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'2', N'3', N'1004')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'3', N'3', N'1002')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'4', N'3', N'1001')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'5', N'3', N'1005')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'6', N'3', N'1006')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'7', N'4', N'1004')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'8', N'4', N'1002')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'9', N'4', N'1005')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'10', N'4', N'1001')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'11', N'4', N'1003')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'12', N'4', N'1006')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'13', N'5', N'1001')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'14', N'5', N'1004')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'15', N'5', N'1006')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'16', N'5', N'1002')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'17', N'5', N'1005')
+GO
+GO
+INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'18', N'5', N'1003')
+GO
+GO
+SET IDENTITY_INSERT [dbo].[paper_wquestion] OFF
 GO
 
 -- ----------------------------
@@ -172,13 +250,15 @@ CREATE TABLE [dbo].[t_paper] (
 [pTime] int NOT NULL ,
 [pTotalScore] int NOT NULL ,
 [csId] int NOT NULL ,
-[qTotal] int NOT NULL ,
+[qTotal] float(53) NULL ,
 [qScore] int NOT NULL ,
 [pType] varchar(10) NOT NULL ,
 [pState] varchar(10) NOT NULL 
 )
 
 
+GO
+DBCC CHECKIDENT(N'[dbo].[t_paper]', RESEED, 5)
 GO
 
 -- ----------------------------
@@ -187,6 +267,15 @@ GO
 SET IDENTITY_INSERT [dbo].[t_paper] ON
 GO
 INSERT INTO [dbo].[t_paper] ([pId], [pName], [pTime], [pTotalScore], [csId], [qTotal], [qScore], [pType], [pState]) VALUES (N'1', N'计算机基础考试01', N'60', N'100', N'1', N'50', N'2', N'笔试', N'未开考')
+GO
+GO
+INSERT INTO [dbo].[t_paper] ([pId], [pName], [pTime], [pTotalScore], [csId], [qTotal], [qScore], [pType], [pState]) VALUES (N'3', N'计算机二级考试01', N'60', N'100', N'1', N'6', N'16', N'笔试', N'未开考')
+GO
+GO
+INSERT INTO [dbo].[t_paper] ([pId], [pName], [pTime], [pTotalScore], [csId], [qTotal], [qScore], [pType], [pState]) VALUES (N'4', N'计算机一级考试01', N'60', N'100', N'1', N'6', N'16', N'笔试', N'未开考')
+GO
+GO
+INSERT INTO [dbo].[t_paper] ([pId], [pName], [pTime], [pTotalScore], [csId], [qTotal], [qScore], [pType], [pState]) VALUES (N'5', N'计算机四级考试', N'60', N'100', N'1', N'6', N'16', N'笔试', N'未开考')
 GO
 GO
 SET IDENTITY_INSERT [dbo].[t_paper] OFF
@@ -347,6 +436,16 @@ GO
 -- Primary Key structure for table paper_class
 -- ----------------------------
 ALTER TABLE [dbo].[paper_class] ADD PRIMARY KEY ([pcId])
+GO
+
+-- ----------------------------
+-- Indexes structure for table paper_wquestion
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table paper_wquestion
+-- ----------------------------
+ALTER TABLE [dbo].[paper_wquestion] ADD PRIMARY KEY ([id])
 GO
 
 -- ----------------------------

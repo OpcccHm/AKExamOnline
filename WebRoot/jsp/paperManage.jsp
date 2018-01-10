@@ -44,7 +44,7 @@ td {
 function showRanCrePaper() {
 	var width = (screen.width - 600) / 2;
 	var height = (screen.height - 400) / 2;
-	var res = window
+	var dialog = window
 			.open(
 					"jsp/createPaperRandom.jsp",
 					"window",
@@ -53,6 +53,12 @@ function showRanCrePaper() {
 							+ ", left="
 							+ width
 							+ ", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+	//轮询窗口是否关闭,关闭的话刷新数据
+	setInterval(function(){
+		if(dialog != null && dialog.closed){
+			window.location.reload(true);
+		}
+	}, 800);
 }
 function showSelectCrePaper() {
 	var width = (screen.width - 700) / 2;

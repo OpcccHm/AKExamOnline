@@ -72,12 +72,21 @@ function getQuestionMaxNum() {
 
 //TODO 更新总题数和每题分数
 function getQuestionTotal(i) {
-	var radioEasy = $("#radioEasy").val();
-	var radioNormal = $("#radioNormal").val();
-	var radioDiff = $("#radioDiff").val();
-	var cbEasy = $("#cbEasy").val();
-	var cbNormal = $("#cbNormal").val();
-	var cbDiff = $("#cbDiff").val();
+	var ptotalScore = Number($("#ptotalScore").val());
+	if(typeof(radioEasyMax)=="undefined"){
+		alert("请选择课程！");
+		return;
+	}
+	if(ptotalScore == 0){
+		alert("请填写总分数！");
+		return;
+	}
+	var radioEasy = Number($("#radioEasy").val());
+	var radioNormal = Number($("#radioNormal").val());
+	var radioDiff = Number($("#radioDiff").val());
+	var cbEasy = Number($("#cbEasy").val());
+	var cbNormal = Number($("#cbNormal").val());
+	var cbDiff = Number($("#cbDiff").val());
 	switch (i) {
 	case 1:
 		if(radioEasy > radioEasyMax){
@@ -116,25 +125,37 @@ function getQuestionTotal(i) {
 		}
 		break;
 	}
-	//$("#qtotal").Text = radioEasy + 
+	var qtotal = radioEasy + radioNormal + radioDiff + cbEasy + cbNormal + cbDiff;
+	$("#qtotal").val(qtotal);
+	$("#qscore").val((ptotalScore/qtotal).toFixed(2));
 }
 </script>
 </head>
 
 <body>
 	<form action="paper/paper_createByRandom" method="post">
+		<input type="hidden" name="paper.ptype" value="笔试">
+		<input type="hidden" name="paper.pstate" value="未开考">
 		<table align="center" width="80%" height="80%">
 			<tr>
 				<td style="text-align: right;">方向：</td>
 				<td>
-					<s:select id="majorSelect" list="#{'':'请选择','SCME':'SCME','SCCE':'SCCE'}" 
-						name="majorSelect" onchange="getCourses()" theme="simple" /> 
+					<select id="majorSelect" onchange="getCourses()">
+						<option value="">请选择</option>
+						<option value="SCME">SCME</option>
+						<option value="SCCE">SCCE</option>
+					</select>
 					阶段: 
-					<s:select id="stageSelect" list="#{'':'请选择','G1':'G1','G2':'G2','G3':'G3'}"
-						name="stageSelect" onchange="getCourses()" theme="simple" /> 
+					<select id="stageSelect" onchange="getCourses()">
+						<option value="">请选择</option>
+						<option value="G1">G1</option>
+						<option value="G2">G2</option>
+						<option value="G3">G3</option>
+					</select>
 					科目: 
-					<s:select list="{}" name="course.csId" id="csId" theme="simple" headerKey=""
-						headerValue="请选择" onchange="getQuestionMaxNum()"/> 
+					<select name="course.csId" id="csId" onchange="getQuestionMaxNum()">
+						<option value="">请选择</option>
+					</select>
 					<font color="red">*</font>
 				</td>
 			</tr>
@@ -147,7 +168,7 @@ function getQuestionTotal(i) {
 			</tr>
 			<tr>
 				<td style="text-align: right;">总分：</td>
-				<td><input type="text" name="paper.ptotalScore">分<font
+				<td><input type="text" id="ptotalScore" name="paper.ptotalScore">分<font
 					color="red">*</font></td>
 			</tr>
 			<tr>
@@ -173,11 +194,11 @@ function getQuestionTotal(i) {
 			</tr>
 			<tr>
 				<td style="text-align: right;">总题数：</td>
-				<td><input type="text" id="qtotal" name="paper.qtotal"></td>
+				<td><input type="text" id="qtotal" name="paper.qtotal" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td style="text-align: right;">每题分数：</td>
-				<td><input type="text" name="paper.qscore"></td>
+				<td><input type="text" id="qscore" name="paper.qscore" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td style="text-align: center;" colspan="2">

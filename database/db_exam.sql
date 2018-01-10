@@ -139,7 +139,7 @@ create table t_paper(
 	pTotalScore int not null,	--总分
 	csId int not null,	--所属科目
 	qTotal int not null,	--已选题目数
-	qScore int not null,	--每题分数
+	qScore float not null,	--每题分数
 	pType varchar(10) not null,		--类型（笔试、机试）
 	pState varchar(10) not null,	--试卷的状态编号(未考试：、考试中、考试结束)
 );
@@ -156,6 +156,21 @@ create table paper_class(
 );
 
 insert into paper_class values (1,'16GR1','2018-03-06 08:00','2018-03-06 09:00');
+
+--试卷笔试题目关系表
+create table paper_wquestion(
+	id int primary key identity(1,1),
+	pId int not null,--试卷编号
+	qId int not null --笔试题编号
+);
+
+
+
+
+
+
+
+
 
 
 

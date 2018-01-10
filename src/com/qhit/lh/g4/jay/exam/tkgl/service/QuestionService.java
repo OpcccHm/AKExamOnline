@@ -11,6 +11,12 @@ public interface QuestionService {
 	
 	/**
 	 * @return
+	 * 获取试题集合
+	 */
+	public List<WrittenQuestion> getQuestionsByType(int csId,String qtype,String degree);
+	
+	/**
+	 * @return
 	 * 获取题目数
 	 */
 	public int getQuestionsMax(int csId,String qtype,String degree);

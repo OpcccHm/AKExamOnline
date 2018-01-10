@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Query;
+import org.hibernate.Transaction;
 
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.common.dao.BaseDao;
@@ -49,6 +50,14 @@ public class PaperDaoImpl extends BaseDao implements PaperDao {
 		pageBean.setItems(items);
 		//执行查询
 		return pageBean;
+	}
+
+	@Override
+	public void createPaperRandom(Paper paper) {
+		// TODO Auto-generated method stub
+		Transaction ts = getSession().beginTransaction();
+		getSession().save(paper);
+		ts.commit();
 	}
 
 }

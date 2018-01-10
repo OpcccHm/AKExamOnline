@@ -15,6 +15,7 @@
     
         <global-results>
             <result name="error">/WEB-INF/jsp/error.jsp</result>
+            <result name="input">/WEB-INF/jsp/error.jsp</result>
             <result name="login_view">/index.jsp</result>
         </global-results>
 
