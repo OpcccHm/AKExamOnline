@@ -12,6 +12,10 @@
         	<interceptor-ref name="defaultStack"></interceptor-ref>
         	<result name="listPaper">/jsp/paperManage.jsp</result>
         	<result name="createRandom">/jsp/closeDialog.jsp</result>
+        	<result name="endExam" type="redirectAction">
+        		<param name="namespace">/paper</param>
+        		<param name="actionName">paper_getPaperList</param>
+			</result>
         </action>
     </package>
 </struts>

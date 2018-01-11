@@ -21,4 +21,9 @@ public class PaperServiceImpl implements PaperService {
 		paperDao.createPaperRandom(paper);
 	}
 
+	@Override
+	public void endExam(Paper paper) {
+		paperDao.endExam(paper);
+	}
+
 }

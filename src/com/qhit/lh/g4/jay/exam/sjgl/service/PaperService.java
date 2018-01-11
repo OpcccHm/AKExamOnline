@@ -9,6 +9,12 @@ public interface PaperService {
 	
 	/**
 	 * @param paper
+	 * 结束考试
+	 */
+	public void endExam(Paper paper);
+	
+	/**
+	 * @param paper
 	 * 随机组卷
 	 */
 	public void createPaperRandom(Paper paper);

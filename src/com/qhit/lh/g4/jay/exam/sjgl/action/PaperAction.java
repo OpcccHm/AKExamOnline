@@ -82,6 +82,15 @@ public class PaperAction extends ActionSupport {
 		
 		return "createRandom";
 	}
+	
+	/**
+	 * @return
+	 * 结束考试
+	 */
+	public String endExam(){
+		paperService.endExam(paper);
+		return "endExam";
+	}
 
 	public List<Course> getListCourses() {
 		return listCourses;

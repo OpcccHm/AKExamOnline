@@ -81,12 +81,14 @@ function getQuestionTotal(i) {
 		alert("请填写总分数！");
 		return;
 	}
+	//获取随机组卷需要的题目数
 	var radioEasy = Number($("#radioEasy").val());
 	var radioNormal = Number($("#radioNormal").val());
 	var radioDiff = Number($("#radioDiff").val());
 	var cbEasy = Number($("#cbEasy").val());
 	var cbNormal = Number($("#cbNormal").val());
 	var cbDiff = Number($("#cbDiff").val());
+	//判断数据库中题目数量是否满足
 	switch (i) {
 	case 1:
 		if(radioEasy > radioEasyMax){
@@ -125,8 +127,11 @@ function getQuestionTotal(i) {
 		}
 		break;
 	}
+	//计算总题目数
 	var qtotal = radioEasy + radioNormal + radioDiff + cbEasy + cbNormal + cbDiff;
+	//设置总题目数
 	$("#qtotal").val(qtotal);
+	//计算每题的分数
 	$("#qscore").val((ptotalScore/qtotal).toFixed(2));
 }
 </script>

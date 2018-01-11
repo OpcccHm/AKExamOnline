@@ -76,15 +76,21 @@ function showSelectCrePaper() {
 function showStartExam(pid) {
 	var width = (screen.width - 600) / 2;
 	var height = (screen.height - 400) / 2;
-	var res = window
+	var dialog = window
 			.open(
-					"jsp/startExam.jsp?pid="+pid,
+					"jsp/startExam.jsp?paper.pid="+pid,
 					"window",
 					"width=600px,height=400px,top="
 							+ height
 							+ ", left="
 							+ width
 							+ ", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
+	//轮询窗口是否关闭,关闭的话刷新数据
+	setInterval(function(){
+		if(dialog != null && dialog.closed){
+			window.location.reload(true);
+		}
+	}, 800);
 }
 function showMsg() {
 	alert("同成绩管理！");
@@ -162,12 +168,10 @@ function getCourses() {
 						<td>${paperInfo.ptype }</td>
 						<td>[${paperInfo.course.major }&nbsp;${paperInfo.course.stage }]<br>${paperInfo.course.csName }</td>
 						<td>${paperInfo.pname }</td>
-						<!-- TODO 显示所有班级 -->
 						<td><s:iterator value="#paperInfo.paperClasses" var="paperClass">
 								${paperClass.classInfo.cname }、
 							</s:iterator></td>
 						<td>${paperInfo.ptime }</td>
-						<!-- TODO 状态颜色 -->
 						<td><s:if test="#paperInfo.pstate == '未开考'">
 								<font color="red">${paperInfo.pstate }</font>
 							</s:if> <s:elseif test="#paperInfo.pstate == '考试中'">
@@ -180,7 +184,7 @@ function getCourses() {
 								<a href="">删除</a>
 								<a href="">开始考试</a>
 							</s:if> <s:elseif test="#paperInfo.pstate == '考试中'">
-								<a href="">结束考试</a>
+								<a href="paper/paper_endExam?paper.pid=${paperInfo.pid }">结束考试</a>
 							</s:elseif> <s:else>
 								<a href="">查看成绩</a>
 							</s:else> <a href="">查看试卷</a></td>

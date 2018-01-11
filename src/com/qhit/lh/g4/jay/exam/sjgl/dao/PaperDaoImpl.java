@@ -54,9 +54,22 @@ public class PaperDaoImpl extends BaseDao implements PaperDao {
 
 	@Override
 	public void createPaperRandom(Paper paper) {
-		// TODO Auto-generated method stub
 		Transaction ts = getSession().beginTransaction();
 		getSession().save(paper);
+		ts.commit();
+	}
+
+	@Override
+	public void endExam(Paper paper) {
+		Transaction ts = getSession().beginTransaction();
+//		paper = (Paper) getSession().get(Paper.class, paper.getPid());
+//		paper.setPstate("考试结束");
+//		getSession().update(paper);
+		String hql = "update Paper paper set paper.pstate = '考试结束' where paper.pid = ?";
+		Query queryUpdate = getSession().createQuery(hql);
+		queryUpdate.setInteger(0, paper.getPid());
+		//执行HQL的添加、修改、删除调用的是executeUpdate方法
+		queryUpdate.executeUpdate();
 		ts.commit();
 	}
 
