@@ -78,7 +78,7 @@ function showStartExam(pid) {
 	var height = (screen.height - 400) / 2;
 	var dialog = window
 			.open(
-					"jsp/startExam.jsp?paper.pid="+pid,
+					"clazz/clazz_getClazzList?paper.pid="+pid,
 					"window",
 					"width=600px,height=400px,top="
 							+ height
@@ -91,9 +91,6 @@ function showStartExam(pid) {
 			window.location.reload(true);
 		}
 	}, 800);
-}
-function showMsg() {
-	alert("同成绩管理！");
 }
 
 function getCourses() {
@@ -180,14 +177,14 @@ function getCourses() {
 								<font color="gray">${paperInfo.pstate }</font>
 							</s:else></td>
 						<!-- TODO 根据状态显示不同的操作-->
-						<td><s:if test="#paperInfo.pstate == '未考试'">
-								<a href="">删除</a>
-								<a href="">开始考试</a>
+						<td><s:if test="#paperInfo.pstate == '未开考'">
+								<a href="javascript:alert('不实现')">删除</a>
+								<a href="javascript:showStartExam(${paperInfo.pid })">开始考试</a>
 							</s:if> <s:elseif test="#paperInfo.pstate == '考试中'">
 								<a href="paper/paper_endExam?paper.pid=${paperInfo.pid }">结束考试</a>
 							</s:elseif> <s:else>
-								<a href="">查看成绩</a>
-							</s:else> <a href="">查看试卷</a></td>
+								<a href="javascript:alert('同成绩管理！')">查看成绩</a>
+							</s:else> <a href="javascript:alert('同成绩管理！')">查看试卷</a></td>
 					</tr>
 				</s:iterator>
 			</table>

@@ -17,38 +17,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+
+<script type="text/javascript" src="js/WdatePicker.js"></script>
 <style type="text/css">
 input {
 	margin: 10px;
 }
 table{
-	border: 1 solid black;
+	background-color: black;
 }
 td{
+	padding:5px 10px;
 	text-align: center;
+	background-color: white;
 }
 </style>
 </head>
 <script type="text/javascript">
-var obj = "" ;
-function getClasses() {
-	var xmlhttp;
-	if (window.XMLHttpRequest) {
-		// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp = new XMLHttpRequest();
-	} else {
-		// code for IE6, IE5
-		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange = function() {
-		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-			var str = xmlhttp.responseText;
-			obj = eval("(" + str + ")");
-		}
-	};
-	xmlhttp.open("POST", "paperManage?cmd=getClasses", true);
-	xmlhttp.send();
-}
+
 function addTr() {
 	var tab = document.getElementById("tab_exam");
 	var rows = tab.rows.length;
@@ -91,20 +77,32 @@ function getRowNo(trObj) {
 	}
 }
 </script>
-<body onload="getClasses()">
-	<%
-	String pid = request.getParameter("pid");
-	%>
-	<form action="paperManage?cmd=startExam&pid=<%=pid%>" method="post">
+<body>
+	<form action="" method="post">
 		<div align="center">
 			<input type="submit" value="开始考试"> <input type="reset"
 				value="取消"> <br> <font>请选择参加考试的班级及开考时间</font>
 		</div>
-		<table id="tab_exam" align="center">
+		<table id="tab_exam" align="center" cellspacing="1px" >
 			<tr>
 				<td>班级</td>
 				<td>开考时间</td>
 				<td><input type="button" value="添加" onclick="addTr();"></td>
+			</tr>
+			<tr>
+				<td>
+					<select name="paperClasses[0].ccode">
+						<s:iterator value="listClazz" var="clazz">
+							<option value="${clazz.ccode }">${clazz.cname }</option>
+						</s:iterator>
+					</select>
+				</td>
+				<td>
+					<input type='text' class="Wdate" id='dateTime' name='paperClasses[0].examDate' onfocus="WdatePicker({skin:'whyGreen',dateFmt: 'yyyy-MM-dd HH:mm',lang:'zh-cn', minDate: '%y-%M-%d 08:00}' })"/>
+				</td>
+				<td>
+					<input type='button' value='删除' onclick="deleteRow('')"/>
+				</td>
 			</tr>
 		</table>
 	</form>

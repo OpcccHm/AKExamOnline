@@ -10,6 +10,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.kmgl.bean.Course;
 import com.qhit.lh.g4.jay.exam.sjgl.bean.Paper;
+import com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass;
 import com.qhit.lh.g4.jay.exam.sjgl.service.PaperService;
 import com.qhit.lh.g4.jay.exam.sjgl.service.PaperServiceImpl;
 import com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenQuestion;
@@ -30,6 +31,7 @@ public class PaperAction extends ActionSupport {
 	private Paper paper;
 	private int radioEasy,radioNormal,radioDiff,cbEasy,cbNormal,cbDiff;
 	private List<WrittenQuestion> listRE,listRN,listRD,listCE,listCN,listCD;
+	private Set<PaperClass> paperClasses;
 	
 	/**
 	 * @return
@@ -234,6 +236,14 @@ public class PaperAction extends ActionSupport {
 
 	public void setListCD(List<WrittenQuestion> listCD) {
 		this.listCD = listCD;
+	}
+
+	public Set<PaperClass> getPaperClasses() {
+		return paperClasses;
+	}
+
+	public void setPaperClasses(Set<PaperClass> paperClasses) {
+		this.paperClasses = paperClasses;
 	}
 	
 }
