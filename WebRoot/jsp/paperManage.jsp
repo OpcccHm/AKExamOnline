@@ -73,12 +73,12 @@ function showSelectCrePaper() {
 							+ width
 							+ ", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no");
 }
-function showStartExam(pid) {
+function showStartExam(pid,ptime) {
 	var width = (screen.width - 600) / 2;
 	var height = (screen.height - 400) / 2;
 	var dialog = window
 			.open(
-					"clazz/clazz_getClazzList?paper.pid="+pid,
+					"clazz/clazz_getClazzList?pid="+pid+"&ptime="+ptime,
 					"window",
 					"width=600px,height=400px,top="
 							+ height
@@ -179,7 +179,7 @@ function getCourses() {
 						<!-- TODO 根据状态显示不同的操作-->
 						<td><s:if test="#paperInfo.pstate == '未开考'">
 								<a href="javascript:alert('不实现')">删除</a>
-								<a href="javascript:showStartExam(${paperInfo.pid })">开始考试</a>
+								<a href="javascript:showStartExam(${paperInfo.pid },${paperInfo.ptime })">开始考试</a>
 							</s:if> <s:elseif test="#paperInfo.pstate == '考试中'">
 								<a href="paper/paper_endExam?paper.pid=${paperInfo.pid }">结束考试</a>
 							</s:elseif> <s:else>

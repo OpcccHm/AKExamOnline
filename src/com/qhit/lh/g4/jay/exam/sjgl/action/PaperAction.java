@@ -31,6 +31,7 @@ public class PaperAction extends ActionSupport {
 	private Paper paper;
 	private int radioEasy,radioNormal,radioDiff,cbEasy,cbNormal,cbDiff;
 	private List<WrittenQuestion> listRE,listRN,listRD,listCE,listCN,listCD;
+	//开始考试，班级集合
 	private Set<PaperClass> paperClasses;
 	
 	/**
