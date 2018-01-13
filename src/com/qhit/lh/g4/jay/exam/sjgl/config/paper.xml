@@ -16,6 +16,7 @@
         		<param name="namespace">/paper</param>
         		<param name="actionName">paper_getPaperList</param>
 			</result>
+        	<result name="startExam">/jsp/closeDialog.jsp</result>
         </action>
     </package>
 </struts>

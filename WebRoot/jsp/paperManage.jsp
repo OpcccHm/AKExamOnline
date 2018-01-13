@@ -88,7 +88,7 @@ function showStartExam(pid,ptime) {
 	//轮询窗口是否关闭,关闭的话刷新数据
 	setInterval(function(){
 		if(dialog != null && dialog.closed){
-			window.location.reload(true);
+			window.location.href="${basePath}paper/paper_getPaperList";
 		}
 	}, 800);
 }

@@ -95,4 +95,9 @@ public class PaperClass implements java.io.Serializable {
 		this.paper = paper;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.ccode+"|"+this.pid+"|"+this.examDate+"|"+this.endDate;
+	}
 }

@@ -32,7 +32,7 @@ public class PaperAction extends ActionSupport {
 	private int radioEasy,radioNormal,radioDiff,cbEasy,cbNormal,cbDiff;
 	private List<WrittenQuestion> listRE,listRN,listRD,listCE,listCN,listCD;
 	//开始考试，班级集合
-	private Set<PaperClass> paperClasses;
+	private List<PaperClass> paperClasses = new ArrayList<>();
 	
 	/**
 	 * @return
@@ -93,6 +93,11 @@ public class PaperAction extends ActionSupport {
 	public String endExam(){
 		paperService.endExam(paper);
 		return "endExam";
+	}
+	
+	public String startExam(){
+		paperService.startExam(paperClasses, paper);
+		return "startExam";
 	}
 
 	public List<Course> getListCourses() {
@@ -239,11 +244,11 @@ public class PaperAction extends ActionSupport {
 		this.listCD = listCD;
 	}
 
-	public Set<PaperClass> getPaperClasses() {
+	public List<PaperClass> getPaperClasses() {
 		return paperClasses;
 	}
 
-	public void setPaperClasses(Set<PaperClass> paperClasses) {
+	public void setPaperClasses(List<PaperClass> paperClasses) {
 		this.paperClasses = paperClasses;
 	}
 	
