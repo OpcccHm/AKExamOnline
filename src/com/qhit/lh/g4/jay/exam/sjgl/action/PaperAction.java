@@ -2,9 +2,12 @@ package com.qhit.lh.g4.jay.exam.sjgl.action;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
@@ -31,6 +34,8 @@ public class PaperAction extends ActionSupport {
 	private Paper paper;
 	private int radioEasy,radioNormal,radioDiff,cbEasy,cbNormal,cbDiff;
 	private List<WrittenQuestion> listRE,listRN,listRD,listCE,listCN,listCD;
+	//选题集合
+	private String qids;
 	//开始考试，班级集合
 	private List<PaperClass> paperClasses = new ArrayList<>();
 	
@@ -95,11 +100,46 @@ public class PaperAction extends ActionSupport {
 		return "endExam";
 	}
 	
+	/**
+	 * @return
+	 * 开始考试
+	 */
 	public String startExam(){
 		paperService.startExam(paperClasses, paper);
 		return "startExam";
 	}
+	
+	
+	/**
+	 * @return
+	 * 选题组卷
+	 */
+	public String createByChoose() {
+		//设置试卷课程的关系
+		paper.setCourse(course);
+		//从session中获取已选试题集合
+		String[] strs = qids.split(",");
+		Set<String> setQs = new HashSet<>();
+		for(int i=0;i<strs.length;i++) {
+			if(strs[i] != null && strs[i] != "") {
+				setQs.add(strs[i]);
+			}
+		}
+		Set<WrittenQuestion> questions = new HashSet<>();
+		for (String qid : setQs) {
+			WrittenQuestion writtenQuestion = new WrittenQuestion();
+			writtenQuestion.setQid(Integer.valueOf(qid));
+			questions.add(writtenQuestion);
+		}
+		//设置试卷和试题集合的关系
+		paper.setWrittenQuestions(questions);
+		//创建试卷
+		paperService.createByChoose(paper);
+		
+		return "createByChoose";
+	}
 
+	///////////////////////////////////
 	public List<Course> getListCourses() {
 		return listCourses;
 	}
@@ -251,5 +291,19 @@ public class PaperAction extends ActionSupport {
 	public void setPaperClasses(List<PaperClass> paperClasses) {
 		this.paperClasses = paperClasses;
 	}
-	
+
+	/**
+	 * @return the qids
+	 */
+	public String getQids() {
+		return qids;
+	}
+
+	/**
+	 * @param qids the qids to set
+	 */
+	public void setQids(String qids) {
+		this.qids = qids;
+	}
+
 }

@@ -59,6 +59,14 @@ function getCourses() {
 	);
 }
 
+var qids = "";
+function getQuestions(qid,this) {
+	if(this.checked){
+		qids+qid+",";
+	}
+	$("#qids").val(qids);
+}
+
 function getQuestions(page) {
 	var url = "${basePath}question/question_getQuestionList.action";
 	var csId = $("#csId").val();
@@ -74,7 +82,7 @@ function getQuestions(page) {
 				//数据
 				$.each(data.items,function(i){
 					var tr = $("<tr></tr>");
-					tr.append("<td><input type='checkbox' name='question' /></td>");
+					tr.append("<td><input type='checkbox' name='question' onchange='getQuestions(${data.items[i].qid},this)' /></td>");
 					tr.append("<td>"+i+"</td>");
 					tr.append("<td>"+data.items[i].qtype+"</td>");
 					tr.append("<td>"+data.items[i].degree+"</td>");
@@ -95,9 +103,10 @@ function getQuestions(page) {
 </head>
 
 <body>
-	<form action="paper/paper_createByRandom" method="post">
-		<input type="hidden" name="paper.ptype" value="笔试"> <input
-			type="hidden" name="paper.pstate" value="未开考">
+	<form action="paper/paper_createByChoose" method="post">
+		<input type="hidden" id="qids" name="qids"> 
+		<input type="hidden" name="paper.ptype" value="笔试"> 
+		<input type="hidden" name="paper.pstate" value="未开考">
 		<table align="center">
 			<tr>
 				<td style="text-align: right;">方向：</td>

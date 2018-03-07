@@ -11,6 +11,11 @@ import com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass;
 public interface PaperDao {
 	
 	/**
+	 * @param paper
+	 */
+	public void createByChoose(Paper paper);
+	
+	/**
 	 * @param paperClasses
 	 */
 	public void startExam(List<PaperClass> paperClasses);

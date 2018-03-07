@@ -34,4 +34,9 @@ public class PaperServiceImpl implements PaperService {
 		paperDao.updateExam(paper, "考试中");
 	}
 
+	@Override
+	public void createByChoose(Paper paper) {
+		paperDao.createByChoose(paper);
+	}
+
 }

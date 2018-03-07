@@ -95,4 +95,11 @@ public class PaperDaoImpl extends BaseDao implements PaperDao {
 		ts.commit();
 	}
 
+	@Override
+	public void createByChoose(Paper paper) {
+		Transaction ts = getSession().beginTransaction();
+		getSession().save(paper);
+		ts.commit();
+	}
+
 }
