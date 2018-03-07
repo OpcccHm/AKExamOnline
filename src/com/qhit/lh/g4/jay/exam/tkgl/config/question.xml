@@ -35,6 +35,16 @@
 					radioEasyMax,radioNormalMax,radioDiffMax,cbEasyMax,cbNormalMax,cbDiffMax
 				</param>
         	</result>
+        	<result name="getQuestionList" type="json">
+        		<!-- 取消浏览器缓存 -->
+				<param name="noCache">true</param>
+				<!-- 设置服务器响应类型 -->
+				<param name="contentType">application/json</param>
+				<!-- JSON数据 -->
+				<param name="root">
+					pageBean
+				</param>
+        	</result>
         </action>
     </package>
 </struts>

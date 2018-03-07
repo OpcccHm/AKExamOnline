@@ -72,6 +72,15 @@ public class QuestionAction extends ActionSupport {
 		System.out.println("数据大小:"+pageBean.getItems().size());
 		return "listWritten";
 	}
+	/**
+	 * @return
+	 * 获取试题列表
+	 */
+	public String getQuestionList(){
+		pageBean = questionService.getWrittenList(pageBean, course, pageIndex);
+		System.out.println("数据大小:"+pageBean.getItems().size());
+		return "getQuestionList";
+	}
 	
 	/**
 	 * @return
