@@ -2,16 +2,16 @@
 Navicat SQL Server Data Transfer
 
 Source Server         : SQLServer
-Source Server Version : 130000
-Source Host           : 127.0.0.1:1433
+Source Server Version : 120000
+Source Host           : 192.168.172.128:1433
 Source Database       : db_exam
 Source Schema         : dbo
 
 Target Server Type    : SQL Server
-Target Server Version : 130000
+Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2018-01-10 22:07:09
+Date: 2018-03-08 21:44:18
 */
 
 
@@ -120,6 +120,30 @@ INSERT INTO [dbo].[paper_wquestion] ([id], [pId], [qId]) VALUES (N'18', N'5', N'
 GO
 GO
 SET IDENTITY_INSERT [dbo].[paper_wquestion] OFF
+GO
+
+-- ----------------------------
+-- Table structure for t_answer
+-- ----------------------------
+DROP TABLE [dbo].[t_answer]
+GO
+CREATE TABLE [dbo].[t_answer] (
+[aid] int NOT NULL IDENTITY(1,1) ,
+[sid] varchar(20) NOT NULL ,
+[pid] int NOT NULL ,
+[qid] int NOT NULL ,
+[answer] varchar(4) NULL 
+)
+
+
+GO
+
+-- ----------------------------
+-- Records of t_answer
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[t_answer] ON
+GO
+SET IDENTITY_INSERT [dbo].[t_answer] OFF
 GO
 
 -- ----------------------------
@@ -446,6 +470,16 @@ GO
 -- Primary Key structure for table paper_wquestion
 -- ----------------------------
 ALTER TABLE [dbo].[paper_wquestion] ADD PRIMARY KEY ([id])
+GO
+
+-- ----------------------------
+-- Indexes structure for table t_answer
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table t_answer
+-- ----------------------------
+ALTER TABLE [dbo].[t_answer] ADD PRIMARY KEY ([aid])
 GO
 
 -- ----------------------------

@@ -164,9 +164,14 @@ create table paper_wquestion(
 	qId int not null --笔试题编号
 );
 
-
-
-
+--答题表
+create table t_answer(
+	aid int primary key identity(1,1),	--答题编号
+	sid varchar(20) not null,	--答题的学生
+	pid int not null,	--当前试卷编号
+	qid int not null,	--当前题目编号
+	answer varchar(4),	--学生答案 
+);
 
 
 
