@@ -53,11 +53,51 @@
 			下载库文件，引入到页面
 		
 	选题组卷：
-		业务：
-		技术难点：
-		
-					
-4，
+		前台页面：
+			1，根据方向、阶段使用ajax请求更新科目列表（course.csid）
+			2，根据选中的科目使用ajax请求更新题目数据列表
+			3，填写基本信息(paper.pName,pTotalScore,pTime,qTotal,qScore,pType="笔试",pSate="未开考")
+			4，选题（存到session{question}）、更新已选题目数量、计算每题的分数
+			5,提交数据
+		后台业务：
+			1，接收前台页面提交的数据
+				course.csid
+				paper
+				paper.setCourse();//设置试卷科目的关系
+				session.getAttribute("questions");//通过session对象获取已选题目数据集合
+				paper.setWrittenQuestions();//设置关系
+				使用hibernate把数据写入到数据库
+				
+				session.setAttribute("questions",null);//清空
+4，成绩管理：
+	试卷列表：
+		前台：
+			参考试卷管理、题库管理去完成
+		后台：
+			根据条件查询试卷列表
+			科目、试卷类型（笔试）、试卷状态（考试结束）
+			hql.append("select paper from Paper paper where paper.pState = '考试结束'");
+			//拼接HQL
+			if(parameter.get("csId") != null && (Integer)parameter.get("csId") > 0){
+				hql.append(" and paper.csId = :csId");
+			}
+			if(parameter.get("pType") != null && !"".equals(parameter.get("pType"))){
+				hql.append(" and paper.ptype = :pType");
+			}
+			PaperDaoImpl：getPaperList
+	查看试题：
+		前台：参考题库管理的试题列表页面
+			分页显示当前试卷的试题
+		后台：
+			根据试卷Id查询试卷对象paper
+			通过试卷对象获取当前试卷的所有题目：
+				paper.getWrittenQuestions();
+	查看成绩：
+		前台：
+		后台：
+			根据试卷ID查询试卷
+	成绩列表-查看详情
+
 
 
 
