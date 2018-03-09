@@ -13,4 +13,9 @@ public class RandomTest {
 			System.out.println(qs[i]);
 		}
 	}
+	
+	@Test
+	public void getStuNo() {
+		System.out.println(Math.floor(Math.random()*36));
+	}
 }

@@ -1,9 +1,9 @@
 /*
 Navicat SQL Server Data Transfer
 
-Source Server         : SQLServer
+Source Server         : sqlserver
 Source Server Version : 120000
-Source Host           : 192.168.172.128:1433
+Source Host           : localhost:1433
 Source Database       : db_exam
 Source Schema         : dbo
 
@@ -11,7 +11,7 @@ Target Server Type    : SQL Server
 Target Server Version : 120000
 File Encoding         : 65001
 
-Date: 2018-03-08 21:44:18
+Date: 2018-03-09 09:18:39
 */
 
 
@@ -306,6 +306,29 @@ SET IDENTITY_INSERT [dbo].[t_paper] OFF
 GO
 
 -- ----------------------------
+-- Table structure for t_score
+-- ----------------------------
+DROP TABLE [dbo].[t_score]
+GO
+CREATE TABLE [dbo].[t_score] (
+[scid] int NOT NULL IDENTITY(1,1) ,
+[sid] int NOT NULL ,
+[pid] int NOT NULL ,
+[score] float(53) NOT NULL 
+)
+
+
+GO
+
+-- ----------------------------
+-- Records of t_score
+-- ----------------------------
+SET IDENTITY_INSERT [dbo].[t_score] ON
+GO
+SET IDENTITY_INSERT [dbo].[t_score] OFF
+GO
+
+-- ----------------------------
 -- Table structure for t_student
 -- ----------------------------
 DROP TABLE [dbo].[t_student]
@@ -520,6 +543,16 @@ GO
 -- Primary Key structure for table t_paper
 -- ----------------------------
 ALTER TABLE [dbo].[t_paper] ADD PRIMARY KEY ([pId])
+GO
+
+-- ----------------------------
+-- Indexes structure for table t_score
+-- ----------------------------
+
+-- ----------------------------
+-- Primary Key structure for table t_score
+-- ----------------------------
+ALTER TABLE [dbo].[t_score] ADD PRIMARY KEY ([scid])
 GO
 
 -- ----------------------------

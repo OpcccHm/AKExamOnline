@@ -170,10 +170,16 @@ create table t_answer(
 	sid varchar(20) not null,	--答题的学生
 	pid int not null,	--当前试卷编号
 	qid int not null,	--当前题目编号
-	answer varchar(4),	--学生答案 
+	answer varchar(4)	--学生答案 
 );
 
-
+--成绩表
+create table t_score(
+	scid int primary key identity(1,1),	--成绩编号
+	sid int not null,	--学号
+	pid int not null,	--试卷编号
+	score FLOAT not null	--成绩
+);
 
 
 

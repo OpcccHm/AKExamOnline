@@ -18,7 +18,7 @@ Date.prototype.Format = function (fmt) { //author: meizz
 }
 
 /**
- * 倒计时
+ * 倒计时，参数分钟
  * timer(pTime);
  * */
 function timer(pTime){
@@ -40,6 +40,12 @@ function timer(pTime){
 		    $('#minute_show').html('<s></s>'+minute+'分');
 		    $('#second_show').html('<s></s>'+second+'秒');
 		    intDiff--;
+			if(intDiff == 60*10){
+				//TODO 考试时间剩余10分钟
+			}
+			if(intDiff == 0){
+				//TODO 考试结束，自动提交表单数据
+			}
 		    }, 1000);
 } 
 
