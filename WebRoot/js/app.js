@@ -40,6 +40,10 @@ function timer(pTime){
 		    $('#minute_show').html('<s></s>'+minute+'分');
 		    $('#second_show').html('<s></s>'+second+'秒');
 		    intDiff--;
+		
+			if(intDiff <= 30*60){
+				//开考半个小时内不能交卷
+			}
 			if(intDiff == 60*10){
 				//TODO 考试时间剩余10分钟
 			}
