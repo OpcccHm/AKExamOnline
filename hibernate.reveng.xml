@@ -2,67 +2,67 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
 
 <hibernate-reverse-engineering>
-	<table name="t_student" schema="dbo" catalog="db_exam"
+	<table name="t_student" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.xsgl.bean.Student">
 		<primary-key>
 			<generator class="foreign"></generator>
 		</primary-key>
 	</table>
-	<table name="t_teacher" schema="dbo" catalog="db_exam"
+	<table name="t_teacher" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.jsgl.bean.Teacher">
 		<primary-key>
 			<generator class="foreign"></generator>
 		</primary-key>
 	</table>
-	<table name="t_user" schema="dbo" catalog="db_exam"
+	<table name="t_user" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.common.bean.User">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-	<table name="t_classInfo" schema="dbo" catalog="db_exam"
+	<table name="t_classInfo" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.bjgl.bean.ClassInfo">
 		<primary-key>
 			<generator class="assigned"></generator>
 		</primary-key>
 	</table>
-	<table name="t_course" schema="dbo" catalog="db_exam"
+	<table name="t_course" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.kmgl.bean.Course">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-	<table name="t_major" schema="dbo" catalog="db_exam"
+	<table name="t_major" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.zysz.bean.Major">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-	<table name="t_question" schema="dbo" catalog="db_exam"
+	<table name="t_question" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.tkgl.bean.Question">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-	<table name="t_machineTest" schema="dbo" catalog="db_exam"
+	<table name="t_machineTest" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.tkgl.bean.MachineTest">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-	<table name="t_writtenTest" schema="dbo" catalog="db_exam"
+	<table name="t_writtenTest" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.tkgl.bean.WrittenTest">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-	<table name="t_paper" schema="dbo" catalog="db_exam"
+	<table name="t_paper" catalog="db_exam"
 		class="com.qhit.lh.g4.jay.exam.sjgl.bean.Paper">
 		<primary-key>
 			<generator class="native"></generator>
 		</primary-key>
 	</table>
-<table name="paper_class" schema="dbo" catalog="db_exam"
+<table name="paper_class" catalog="db_exam"
 	class="com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass">
 	<primary-key>
 		<generator class="native"></generator>

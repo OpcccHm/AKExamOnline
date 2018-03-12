@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 }
 </style>
 <script type="text/javascript">
-function getCourses() {
+function getCourses(){
 	var url = "${basePath}course/course_getCourses2Json.action";
 	var majorValue = $("#majorSelect").val();
 	var stageValue = $("#stageSelect").val();
@@ -60,11 +60,20 @@ function getCourses() {
 }
 
 var qids = "";
-function getQuestions(qid,this) {
-	if(this.checked){
-		qids+qid+",";
+var qNum = 0;//已选题数
+function selectQuestions(qid,_this) {
+	if(_this.checked){
+		qids += qid+",";
+		qNum++;//已选题数++
+	}else{
+		qNum--;//已选题数--
 	}
 	$("#qids").val(qids);
+	//设置已选题数
+	$("#qtotal").val(qNum);
+	//计算每题分数
+	var ptotalScore = Number($("#ptotalScore").val());
+	$("#qscore").val((ptotalScore/qNum).toFixed(2));
 }
 
 function getQuestions(page) {
@@ -81,8 +90,9 @@ function getQuestions(page) {
 			function(data){
 				//数据
 				$.each(data.items,function(i){
+					
 					var tr = $("<tr></tr>");
-					tr.append("<td><input type='checkbox' name='question' onchange='getQuestions(${data.items[i].qid},this)' /></td>");
+					tr.append("<td><input type='checkbox' name='question' onchange='selectQuestions("+data.items[i].qid+",this)' /></td>");
 					tr.append("<td>"+i+"</td>");
 					tr.append("<td>"+data.items[i].qtype+"</td>");
 					tr.append("<td>"+data.items[i].degree+"</td>");

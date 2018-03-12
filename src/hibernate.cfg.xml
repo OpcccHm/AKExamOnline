@@ -6,16 +6,19 @@
 <hibernate-configuration>
 
 	<session-factory>
+		<!-- org.hibernate.dialect.SQLServerDialect -->
 		<property name="dialect">
-			org.hibernate.dialect.SQLServerDialect
+			org.hibernate.dialect.MySQLDialect
 		</property>
+		<!-- jdbc:sqlserver://192.168.172.128:1433;databaseName=db_exam -->
 		<property name="connection.url">
-			jdbc:sqlserver://192.168.172.128:1433;databaseName=db_exam
+			jdbc:mysql://localhost:3306/db_exam
 		</property>
-		<property name="connection.username">sa</property>
+		<property name="connection.username">root</property>
 		<property name="connection.password">123456</property>
+		<!-- com.microsoft.sqlserver.jdbc.SQLServerDriver -->
 		<property name="connection.driver_class">
-			com.microsoft.sqlserver.jdbc.SQLServerDriver
+			com.mysql.jdbc.Driver
 		</property>
 		<property name="show_sql">true</property>
 		<property name="format_sql">false</property>

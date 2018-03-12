@@ -21,7 +21,7 @@ import com.qhit.lh.g4.jay.exam.tkgl.service.QuestionService;
 import com.qhit.lh.g4.jay.exam.tkgl.service.QuestionServiceImpl;
 import com.qhit.lh.g4.jay.exam.tkgl.utils.RandomQuestionsUtils;
 
-public class PaperAction extends ActionSupport {
+public class PaperAction {
 	private PaperService paperService = new PaperServiceImpl();
 	private QuestionService questionService = new QuestionServiceImpl();
 	private List<Course> listCourses = new ArrayList<>();
@@ -115,6 +115,7 @@ public class PaperAction extends ActionSupport {
 	 * 选题组卷
 	 */
 	public String createByChoose() {
+		System.out.println(qids);
 		//设置试卷课程的关系
 		paper.setCourse(course);
 		//从session中获取已选试题集合
