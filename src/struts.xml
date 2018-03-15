@@ -30,6 +30,8 @@
     <include file="com/qhit/lh/g4/jay/exam/sjgl/config/paper.xml"/>
     <include file="com/qhit/lh/g4/jay/exam/kmgl/config/course.xml"/>
     <include file="com/qhit/lh/g4/jay/exam/bjgl/config/clazz.xml"/>
+    <include file="com/qhit/lh/g4/jay/exam/cjgl/config/score.xml"/>
+    <include file="com/qhit/lh/g4/jay/exam/zxks/config/exam.xml"/>
 
     <!-- Add packages here -->
     <!-- <interceptor-ref name="loginInterceptor"></interceptor-ref>

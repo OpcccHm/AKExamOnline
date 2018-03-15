@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.qhit.lh.g4.jay.exam.bjgl.bean.ClassInfo;
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
 import com.qhit.lh.g4.jay.exam.sjgl.bean.Paper;
 import com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass;
@@ -37,6 +38,11 @@ public class PaperServiceImpl implements PaperService {
 	@Override
 	public void createByChoose(Paper paper) {
 		paperDao.createByChoose(paper);
+	}
+
+	@Override
+	public List<Paper> getPaper(ClassInfo classInfo) {
+		return paperDao.getPaper(classInfo);
 	}
 
 }

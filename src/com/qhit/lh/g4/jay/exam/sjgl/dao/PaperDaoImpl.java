@@ -2,7 +2,6 @@ package com.qhit.lh.g4.jay.exam.sjgl.dao;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -100,6 +99,11 @@ public class PaperDaoImpl extends BaseDao implements PaperDao {
 		Transaction ts = getSession().beginTransaction();
 		getSession().save(paper);
 		ts.commit();
+	}
+
+	@Override
+	public List<Paper> getPaper(ClassInfo classInfo) {
+		return null;
 	}
 
 }
