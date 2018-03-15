@@ -55,13 +55,13 @@ td {
 					<th><font color="white">考试时长(分钟)</font></th>
 					<th><font color="white">操作</font></th>
 				</tr>
-				<s:iterator value="pageBean.Items" var="paperInfo" status="status">
+				<s:iterator value="paperClasses" var="paperClass" status="status">
 					<tr>
 						<td>${status.count }</td>
 						<td>${paperClass.paper.ptype }</td>
 						<td>[${paperClass.paper.course.major }&nbsp;${paperClass.paper.course.stage }]<br>${paperClass.paper.course.csName }</td>
 						<td>${paperClass.paper.pname }</td>
-						<td><s:iterator value="#paperInfo.paperClasses"
+						<td><s:iterator value="#paperClass.paper.paperClasses"
 								var="paperClass">
 								${paperClass.classInfo.cname }、
 							</s:iterator></td>

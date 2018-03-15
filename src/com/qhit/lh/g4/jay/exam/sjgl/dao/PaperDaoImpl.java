@@ -1,10 +1,14 @@
 package com.qhit.lh.g4.jay.exam.sjgl.dao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import com.qhit.lh.g4.jay.exam.bjgl.bean.ClassInfo;
 import com.qhit.lh.g4.jay.exam.common.bean.PageBean;
@@ -101,9 +105,20 @@ public class PaperDaoImpl extends BaseDao implements PaperDao {
 		ts.commit();
 	}
 
+	/* (non-Javadoc)
+	 * 查询可以考试的试卷
+	 * 条件：
+	 * 	1、当前学生--》班级
+	 *  2、考试结束日期大于当前时间
+	 */
 	@Override
-	public List<Paper> getPaper(ClassInfo classInfo) {
-		return null;
+	public List<PaperClass> getPaper(ClassInfo classInfo) {
+		Criteria criteria = getSession().createCriteria(PaperClass.class);
+		criteria
+			.add(Restrictions.eq("ccode", classInfo.getCcode()))
+			.add(Restrictions.gt("endDate", new Date()));
+		
+		return criteria.list();
 	}
 
 }

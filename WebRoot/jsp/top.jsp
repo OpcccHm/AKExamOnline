@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li><span id="tip"></span></li>
 						<li>[ <a href="javascript:logout();">注销</a>]
 						</li>
-						<li>[ <a href="javascript:window.parent.close();">退出系统</a>]
+						<li>[ <a href="javascript:window.opener=null;window.open('','_self');window.close();">退出系统</a>]
 						</li>
 					</ul>
 				</div>

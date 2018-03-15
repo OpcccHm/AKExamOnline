@@ -41,7 +41,7 @@ public class PaperServiceImpl implements PaperService {
 	}
 
 	@Override
-	public List<Paper> getPaper(ClassInfo classInfo) {
+	public List<PaperClass> getPaper(ClassInfo classInfo) {
 		return paperDao.getPaper(classInfo);
 	}
 

@@ -10,12 +10,12 @@ import com.qhit.lh.g4.jay.exam.sjgl.bean.Paper;
 import com.qhit.lh.g4.jay.exam.sjgl.bean.PaperClass;
 
 public interface PaperService {
-	
 	/**
 	 * @param classInfo
 	 * @return
+	 * 查询可以考试的试卷
 	 */
-	public List<Paper> getPaper(ClassInfo classInfo);
+	public List<PaperClass> getPaper(ClassInfo classInfo);
 	
 	/**
 	 * @param paper

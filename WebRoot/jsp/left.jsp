@@ -144,7 +144,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         function setSuMenu() {
         	 t = outlookbar.addtitle('后台功能', '后台管理', 1);
              outlookbar.additem('个人信息', t, 'developing.jsp');
-             outlookbar.additem('在线考试', t, 'developing.jsp');
+             outlookbar.additem('在线考试', t, '../exam/exam_getExamList');
              outlookbar.additem('笔试成绩', t, 'developing.jsp');
              outlookbar.additem('机试成绩', t, 'developing.jsp'); 
      		 outlookbar.additem('修改密码', t, 'developing.jsp');

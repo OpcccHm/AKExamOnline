@@ -13,8 +13,9 @@ public interface PaperDao {
 	/**
 	 * @param classInfo
 	 * @return
+	 * 查询可以考试的试卷
 	 */
-	public List<Paper> getPaper(ClassInfo classInfo);
+	public List<PaperClass> getPaper(ClassInfo classInfo);
 	
 	/**
 	 * @param paper

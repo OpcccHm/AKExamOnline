@@ -20,7 +20,7 @@ import com.qhit.lh.g4.jay.exam.zxks.service.ExamServiceImpl;
 public class ExamAction {
 	private ExamService examService = new ExamServiceImpl();
 	private List<Paper> papers;
-	private List<PaperClass> paperClass;
+	private List<PaperClass> paperClasses;
 
 	/**
 	 * @return 
@@ -30,7 +30,7 @@ public class ExamAction {
 	public String getExamList() {
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		
-		paperClass = examService.getExamList(user);
+		paperClasses = examService.getExamList(user);
 		return "getExamList";
 	}
 
@@ -53,18 +53,19 @@ public class ExamAction {
 
 
 	/**
-	 * @return the paperClass
+	 * @return the paperClasses
 	 */
-	public List<PaperClass> getPaperClass() {
-		return paperClass;
+	public List<PaperClass> getPaperClasses() {
+		return paperClasses;
 	}
 
 
 
 	/**
-	 * @param paperClass the paperClass to set
+	 * @param paperClasses the paperClasses to set
 	 */
-	public void setPaperClass(List<PaperClass> paperClass) {
-		this.paperClass = paperClass;
+	public void setPaperClasses(List<PaperClass> paperClasses) {
+		this.paperClasses = paperClasses;
 	}
+
 }
